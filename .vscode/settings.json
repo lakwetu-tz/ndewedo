@@ -1,0 +1,70 @@
+{
+    "piny.project_settings": {
+        "open-pages": [
+            "pinyfakepage.html"
+        ],
+        "urls": {
+            "pinyfakepage.html": {
+                "open-page-views": [
+                    {
+                        "w": 1044,
+                        "h": 0
+                    }
+                ]
+            }
+        },
+        "recent-classes": [
+            "2",
+            "4",
+            "-",
+            "w"
+        ],
+        "component-settings": {
+            "app/page.tsx:::Temp": {
+                "route": "/"
+            }
+        },
+        "app-routes": {
+            "routes": [
+                "/",
+                "/_not-found",
+                "/about",
+                "/blog",
+                "/blog/arusha-charity-programme",
+                "/blog/conquer-the-roof-of-africa",
+                "/blog/embark-on-a-wildlife-safari",
+                "/blog/explore-tanzanias-traditions",
+                "/blog/tanzanias-hidden-gems",
+                "/blog/unwind-on-zanzibars-beaches",
+                "/contact",
+                "/cultural-tours",
+                "/destinations/kenya",
+                "/destinations/rwanda",
+                "/destinations/serengeti",
+                "/destinations/tanzania",
+                "/destinations/uganda",
+                "/faqs",
+                "/gallery",
+                "/inquire",
+                "/privacy-policy",
+                "/refund-policy",
+                "/reviews",
+                "/safaris",
+                "/safaris/cultural-7-day",
+                "/safaris/luxury-13-day",
+                "/safaris/packages/japanese-6-day",
+                "/safaris/packages/luxury-13-day",
+                "/safaris/packages/northern-circuit-9-day",
+                "/safaris/packages/private-16-day",
+                "/safaris/packages/private-8-day",
+                "/safaris/packages/zanzibar-10-day",
+                "/safaris/photography",
+                "/safaris/wildlife",
+                "/terms",
+                "/trekking",
+                "/volunteer"
+            ],
+            "current_route": "/"
+        }
+    }
+}

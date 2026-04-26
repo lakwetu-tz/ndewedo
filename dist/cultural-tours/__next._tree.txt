@@ -1,0 +1,12 @@
+:HL["/_next/static/chunks/85b08b2af7edf718.css","style"]
+:HL["/_next/static/chunks/18b81c4283a15d1e.css","style"]
+:HL["/_next/static/media/47fe1b7cd6e6ed85-s.p.855a563b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/8e6fa89aa22d24ec-s.p.3aec397d.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/a218039a3287bcfd-s.p.4a23d71b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e2334d715941921e-s.p.d82a9aff.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/assets/84aae7ff223a40785576ac228aed3a3c2d2b2a01.png","image"]
+:HL["/assets/6870993bf1e00fbf0cb4123dc0e7f9640cf9e623.png","image"]
+:HL["/assets/781ef97efef4353b0065980214fdfc173a878e1d.png","image"]
+:HL["/assets/7ec326915fc9622b4ec1a84a59007ebf5c5fbeaf.png","image"]
+:HL["/assets/1b37f012201d1b14a210e3e47b6003cf27d0d796.png","image"]
+0:{"buildId":"jYkvIis-bIr8iMR37p9VS","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"cultural-tours","paramType":null,"paramKey":"cultural-tours","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

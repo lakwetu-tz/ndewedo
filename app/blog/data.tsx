@@ -16,7 +16,7 @@ export const posts: BlogPost[] = [
     title: "Tanzania's Hidden Gems",
     excerpt: "Discover off-the-beaten-path gems for unique travel experiences.",
     date: "March 17, 2025",
-    image: "/assets/4dd1a8da14995d40fe1b2f22a0c8fe00e4988abf.png",
+    image: "https://lotusgemology.com/images/library/articles/sourcearticles/downtown/east-africa-20071007-224002-000.jpg",
     href: "/blog/tanzanias-hidden-gems",
     content: (
       <>
@@ -65,7 +65,7 @@ export const posts: BlogPost[] = [
     title: "Explore Tanzania's traditions",
     excerpt: "Immerse in rich culture through authentic local encounters.",
     date: "March 17, 2025",
-    image: "/assets/4ef3a9d10eed41f464501bbc039176b746132762.png",
+    image: "https://www.jambointernationaltour.com/wp-content/uploads/2025/06/image-363-1024x684.png",
     href: "/blog/explore-tanzanias-traditions",
     content: (
       <>
@@ -124,7 +124,7 @@ export const posts: BlogPost[] = [
     title: "Unwind on Zanzibar's beaches",
     excerpt: "Relax on beautiful beaches and explore rich culture.",
     date: "March 17, 2025",
-    image: "/assets/1b37f012201d1b14a210e3e47b6003cf27d0d796.png",
+    image: "https://www.dianibeachmombasa.com/wp-content/uploads/2024/05/97-2-750x390.jpg",
     href: "/blog/unwind-on-zanzibars-beaches",
     content: (
       <>
@@ -174,7 +174,7 @@ export const posts: BlogPost[] = [
         <p>
           Whether you dream of lounging on sun-drenched beaches, exploring centuries-old streets, or indulging in exotic flavors, Zanzibar offers the ultimate tropical escape. The island’s perfect blend of relaxation, history, and adventure makes it an ideal destination for honeymooners, families, and solo travelers alike.
         </p>
-        <p>Let Ndewedo Tours guide you on an unforgettable Zanzibar experience!</p>
+        <p>Let Ndewedo Tours & Adventures guide you on an unforgettable Zanzibar experience!</p>
       </>
     )
   },
@@ -235,7 +235,7 @@ export const posts: BlogPost[] = [
           <li>Mental Resilience: The climb is as much a mental challenge as a physical one. Stay positive and persistent!</li>
         </ul>
         <p>
-          Are you ready to take on the challenge and conquer the Roof of Africa? Let Ndewedo Tours guide you on this epic adventure! 🏔️🇹🇿
+          Are you ready to take on the challenge and conquer the Roof of Africa? Let Ndewedo Tours & Adventures guide you on this epic adventure! 🏔️🇹🇿
         </p>
       </>
     )

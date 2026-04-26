@@ -9,6 +9,10 @@ const config: Config = {
   darkMode: 'class', // enable dark mode using the 'dark' class
   theme: {
     extend: {
+        fontFamily: {
+            open: ["Open Sans", "sans-serif"],
+            quattro: ["Quattrocento Sans", "sans-serif"],
+         },
       colors: {
         // Light / Dark theme variables
         background: 'var(--background)',

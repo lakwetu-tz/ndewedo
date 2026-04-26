@@ -60,7 +60,7 @@ export default function ContactPage() {
       <HeroSection 
         title="Contact Us"
         description="Ready to start your Tanzania adventure? Get in touch with us today"
-        image="https://images.unsplash.com/photo-1596464716127-f9a86b562636?q=80&w=2070&auto=format&fit=crop"
+        image="https://images.unsplash.com/photo-1635398939762-e3377db47510?q=80&w=2070&auto=format&fit=crop"
         showCta={false}
       />
 

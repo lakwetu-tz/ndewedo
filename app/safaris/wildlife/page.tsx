@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from 'react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
 import {
   Clock, Users, MapPin, Calendar, Check, Star,
-  ChevronRight, Mail, Phone, Camera, Tent, Utensils
+  ChevronRight, Camera, Tent, Utensils, Shield, Heart, Trophy, Info
 } from 'lucide-react';
 import { HeroSection } from '@/components/HeroSection';
 import BookingModal from '@/components/BookingModal';
@@ -19,8 +18,8 @@ const safariPackages = [
     price: '$9,840',
     rating: 4.9,
     reviews: 127,
-    href: "/safaris/packages/northern-circuit-9-day",  // Updated href to match title better
-    image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/fb/a5/c8/luxury-ensuite-room-view.jpg?w=900&h=500&s=1',  // Luxury Serengeti tent interior with savannah view (from real camp listings)
+    href: "/safaris/packages/northern-circuit-9-day",
+    image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/fb/a5/c8/luxury-ensuite-room-view.jpg?w=900&h=1200&s=1',
     description: 'From the Garden of Eden (Ngorongoro Crater) to the endless plains of the Serengeti and Tarangire’s elephant herds — an exclusive journey with luxury tented camps and expert guiding.',
     highlights: [
       'Track the Great Migration in mobile luxury camps',
@@ -36,9 +35,9 @@ const safariPackages = [
     duration: '10 Days / 9 Nights',
     price: '$6,356',
     rating: 5.0,
-    reviews: 89, // You can update this based on real data later
+    reviews: 89,
     href: "/safaris/packages/zanzibar-10-day",
-    image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', // Stunning Zanzibar beach with palm trees and turquoise ocean – perfect hero for safari + beach combo
+    image: 'https://images.unsplash.com/photo-1603632076161-5836b146638c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
     description: 'Thrilling wildlife safari through Lake Manyara, Serengeti, and Ngorongoro Crater, followed by pure relaxation on the pristine beaches of Zanzibar.',
     highlights: [
       'Tree-climbing lions and diverse wildlife in Lake Manyara',
@@ -56,7 +55,7 @@ const safariPackages = [
     href: "/safaris/packages/luxury-13-day",
     rating: 4.7,
     reviews: 203,
-    image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/f2/99/b7/into-wild-africa-luxury.jpg?w=900&h=500&s=1',
+    image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/f2/99/b7/into-wild-africa-luxury.jpg?w=900&h=1200&s=1',
     description: 'Affordable safari covering Tarangire, Ngorongoro, and Lake Manyara for budget-conscious travelers.',
     highlights: [
       'Cross-border Big Five viewing in Masai Mara & Serengeti',
@@ -67,78 +66,77 @@ const safariPackages = [
     ]
   },
   {
-  id: 'cultural-safari-japanese-7-day',
-  title: '7-DAY SPECIAL CULTURAL & SAFARI ITINERARY FOR JAPANESE GUESTS',
-  duration: '7 Days / 6 Nights',
-  price: '$3,950',
-  rating: 5.0,
-  reviews: 68,  // Placeholder; adjust based on similar cultural packages
-  href: "/safaris/packages/cultural-7-day",
-  image: 'https://www.redetoursandsafaris.com/blog/images/blog-maasai-jumping-dance-3.webp',  // Maasai warriors traditional jumping dance in savannah (authentic cultural highlight)
-  description: 'A gentle, respectful journey for Japanese travelers blending Northern Tanzania’s iconic wildlife (Tarangire elephants & baobabs, Serengeti endless plains, Ngorongoro Crater views) with authentic Maasai cultural encounters, emphasizing harmony between nature and people, calm pacing, reflection, and meaningful connections.',
-  highlights: [
-    'Large elephant herds and iconic baobabs in Tarangire National Park',
-    'Full-day immersion in the endless plains of Serengeti',
-    'Panoramic views of Ngorongoro Crater rim',
-    'Respectful Maasai village visit with traditional songs, dances, and homes',
-    'Gentle pacing focused on nature harmony and cultural reflection'
-  ]
-},
-{
-  id: 'luxury-private-8-day',
-  title: '8-DAY LUXURY PRIVATE SAFARI – TANZANIA',
-  duration: '8 Days / 7 Nights',
-  price: '$9,735',
-  rating: 5.0,
-  reviews: 92,
-  href: "/safaris/packages/private-8-day",
-  image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0f/05/78/lemala-mpingo-ridge.jpg?w=900&h=500&s=1',  // Lemala Mpingo Ridge escarpment luxury view
-  description: 'Exclusive private safari with dedicated guide & vehicle: Tarangire elephants, Lake Manyara lions, Serengeti migration tracking, staying at premium lodges like Arusha Coffee Lodge, Lemala Mpingo Ridge, Meliá Ngorongoro, and Siringit camps.',
-  highlights: [
-    'Private game drives & dedicated guide/vehicle',
-    'Vast elephant herds & baobabs in Tarangire',
-    'Tree-climbing lions in Lake Manyara',
-    'Great Migration access in Northern Serengeti',
-    'Refined luxury tents & rim views at Meliá Ngorongoro'
-  ]
-},
-{
-  id: 'private-east-africa-16-day',
-  title: '16-DAY PRIVATE SAFARI EAST AFRICA: WILDLIFE, CULTURE & COASTAL ESCAPE',
-  duration: '16 Days / 15 Nights',
-  price: '$8,450',
-  rating: 5.0,
-  reviews: 78,
-  href: "/safaris/packages/private-16-day",
-  image: 'https://www.gettyimages.com/detail/photo/hot-air-balloons-at-sunrise-over-plains-royalty-free-image/146601959?w=900&h=500&s=1',  // Maasai Mara/Serengeti balloon sunrise (signature highlight)
-  description: 'Fully private 4x4 safaris across Kenya (Maasai Mara, Nakuru, Naivasha, Amboseli) and Tanzania (Tarangire, Serengeti, Ngorongoro), with hot air balloon, Maasai cultural visits, cross-border transit, and 3-night Zanzibar beach retreat at Seacliff Resort & Spa.',
-  highlights: [
-    'Hot air balloon safari over Serengeti plains',
-    'Maasai village cultural experiences & dances',
-    'Private game drives in Maasai Mara & Serengeti',
-    'Hell\'s Gate walking safari & Lake Naivasha boat ride',
-    'Relaxing Zanzibar beach & marine adventures finale'
-  ]
-},
-
-{
-  id: 'premium-tanzania-japanese-6-day',
-  title: '6-DAY PREMIUM TANZANIA SAFARI FOR JAPANESE TRAVELERS',
-  duration: '6 Days / 5 Nights',
-  price: '$4,250',
-  rating: 5.0,
-  reviews: 85,
-  href: "/safaris/packages/japanese-6-day",
-  image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0f/05/78/serengeti-sunset-plains.jpg?w=900&h=500&s=1',  // Golden Serengeti sunset over endless plains with acacia trees (evokes calm reflection and wildlife harmony)
-  description: 'A refined, gentle 6-day Northern Tanzania safari tailored for Japanese travelers: Tarangire elephants & baobabs, Serengeti immersion, Ngorongoro views, comfortable lodges, professional English-speaking guides (Japanese guide optional), smooth logistics, and respectful pacing for first-time visitors, seniors, couples, or small groups.',
-  highlights: [
-    'Large elephant herds & iconic baobabs in Tarangire National Park',
-    'Full-day wildlife immersion in the endless Serengeti plains',
-    'Panoramic Ngorongoro Conservation Area views & wildlife',
-    'Comfortable, hygienic lodges with peaceful gardens & attentive service',
-    'Gentle schedule with window seats, private vehicle & educational guiding'
-  ]
-},
+    id: 'cultural-safari-japanese-7-day',
+    title: '7-DAY SPECIAL CULTURAL & SAFARI ITINERARY',
+    duration: '7 Days / 6 Nights',
+    price: '$3,950',
+    rating: 5.0,
+    reviews: 68,
+    href: "/safaris/packages/cultural-7-day",
+    image: 'https://images.unsplash.com/photo-1698618612776-0e6f13560a24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080',
+    description: 'A gentle, respectful journey blending Northern Tanzania’s iconic wildlife with authentic Maasai cultural encounters, emphasizing harmony between nature and people, calm pacing, and meaningful connections.',
+    highlights: [
+      'Large elephant herds and iconic baobabs in Tarangire',
+      'Full-day immersion in the endless plains of Serengeti',
+      'Panoramic views of Ngorongoro Crater rim',
+      'Respectful Maasai village visit with traditional songs',
+      'Gentle pacing focused on nature harmony'
+    ]
+  },
+  {
+    id: 'luxury-private-8-day',
+    title: '8-DAY LUXURY PRIVATE SAFARI – TANZANIA',
+    duration: '8 Days / 7 Nights',
+    price: '$9,735',
+    rating: 5.0,
+    reviews: 92,
+    href: "/safaris/packages/private-8-day",
+    image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/0f/05/78/lemala-mpingo-ridge.jpg?w=900&h=1200&s=1',
+    description: 'Exclusive private safari with dedicated guide & vehicle: Tarangire elephants, Lake Manyara lions, Serengeti migration tracking, staying at premium lodges.',
+    highlights: [
+      'Private game drives & dedicated guide/vehicle',
+      'Vast elephant herds & baobabs in Tarangire',
+      'Tree-climbing lions in Lake Manyara',
+      'Great Migration access in Northern Serengeti',
+      'Refined luxury tents & rim views at Meliá Ngorongoro'
+    ]
+  },
+  {
+    id: 'private-east-africa-16-day',
+    title: '16-DAY PRIVATE SAFARI EAST AFRICA: WILDLIFE & COASTAL',
+    duration: '16 Days / 15 Nights',
+    price: '$8,450',
+    rating: 5.0,
+    reviews: 78,
+    href: "/safaris/packages/private-16-day",
+    image: 'https://images.unsplash.com/photo-1761976671588-c47d04ff9dc3?q=80&w=1200&auto=format&fit=crop',
+    description: 'Fully private 4x4 safaris across Kenya and Tanzania, with hot air balloon, Maasai cultural visits, and a relaxing Zanzibar beach retreat.',
+    highlights: [
+      'Hot air balloon safari over Serengeti plains',
+      'Maasai village cultural experiences & dances',
+      'Private game drives in Masai Mara & Serengeti',
+      'Hell\'s Gate walking safari & Lake Naivasha boat ride',
+      'Relaxing Zanzibar beach & marine adventures finale'
+    ]
+  },
+  {
+    id: 'premium-tanzania-japanese-6-day',
+    title: '6-DAY PREMIUM TANZANIA SAFARI EXPERIENCE',
+    duration: '6 Days / 5 Nights',
+    price: '$4,250',
+    rating: 5.0,
+    reviews: 85,
+    href: "/safaris/packages/japanese-6-day",
+    image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/d1/b6/94/a-retreat-at-namiri-plains.jpg?w=900&h=1200&s=1',
+    description: 'A refined, gentle Northern Tanzania safari: Tarangire elephants, Serengeti immersion, Ngorongoro views, comfortable lodges, and respectful pacing.',
+    highlights: [
+      'Large elephant herds & iconic baobabs in Tarangire',
+      'Full-day wildlife immersion in Serengeti',
+      'Panoramic Ngorongoro Conservation Area views',
+      'Comfortable, hygienic lodges with peaceful gardens',
+      'Gentle schedule with private vehicle & expert guiding'
+    ]
+  },
 ];
 
 export default function WildlifeSafariPage() {
@@ -151,177 +149,153 @@ export default function WildlifeSafariPage() {
   };
 
   return (
-    <>
-      <div className="w-full">
-        {/* Hero Section */}
-        <HeroSection
-          title="Wildlife Safari Packages"
-          description="Embark on unforgettable wildlife adventures across Tanzania's iconic national parks"
-          image="https://images.unsplash.com/photo-1695367255234-2cb7fbc6425b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYWZhcmklMjBqZWVwJTIwdGFuemFuaWF8ZW58MXx8fHwxNzYyNTk5NTIyfDA&ixlib=rb-4.1.0&q=80&w=1080"
-          ctaText="Plan Your Safari"
-          ctaLink="/inquire"
-        />
+    <div className="w-full bg-white">
+      {/* Hero Section */}
+      <HeroSection
+        title="Wildlife Safari Packages"
+        description="Embark on unforgettable wildlife adventures across Tanzania's iconic national parks"
+        image="https://ucd2366a4756928b81106589beef.previews.dropboxusercontent.com/p/thumb/AC9A1loL8OiuKAyItZdMJZqZSbMPxx2xzHZrVk9fh9fxzFEIbucdprHZu2KupnsMVYcVDu7TBv2hTp2FcTH0xE9VIh6Jgd9o6kG1_XdeZ-moxtLeNFJB9YUJQuS6e-osJrvo1gtXh8mNgdmZW-69YmV41orVLKDliyuxES3yV3VfPdgCngyB8WpE4xY5qR5v6JzLyJj5Ou7KAu7B7iL5dgARTpf6-w6GtramlF4NO4UKiHfOWRMWNjPGTwjQz9X5nJDd6w6RDcyoIy55KyFgRYute1cQIMP-qSWVVnMi95W45GeiVe_B45-FjKQc0YiKlikmyDgeGKX8fQlIz_1F25jr6vUwdtjZUW2j-wJtcxnWiA/p.jpeg"
+        ctaText="Plan Your Safari"
+        ctaLink="/inquire"
+      />
 
-        {/* Safari Packages */}
-        <section className="py-12 md:py-20 px-4 bg-white">
-          <div className="max-w-[1400px] mx-auto">
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-[32px] sm:text-[40px] text-[#333333] mb-4">
-                Our <span className="text-[#1f751f]">Safari Packages</span>
-              </h2>
-              <div className="h-[5px] w-[100px] bg-[#686868] rounded-[30px] mx-auto mb-6" />
-              <p className="text-[16px] sm:text-[18px] text-[#686868] max-w-[800px] mx-auto">
-                Carefully crafted safari experiences designed to showcase the best of Tanzania's wildlife
-              </p>
-            </div>
+      {/* Intro Quote Section */}
+      <section className="py-24 px-6 text-center bg-[#fdfcfb]">
+        <div className="max-w-[800px] mx-auto">
+          <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#c97500] uppercase block mb-8">THE WILDERNESS</span>
+          <h2 className="font-serif text-[32px] md:text-[42px] text-[#222] leading-relaxed italic opacity-80">
+            "Everything in Africa bites, but the safari bug is the worst of all."
+          </h2>
+          <div className="h-[1px] w-20 bg-[#1f751f] mx-auto mt-12" />
+        </div>
+      </section>
 
-            <div className="space-y-8 md:space-y-12">
-              {safariPackages.map((pkg, index) => (
-                <div
-                  key={pkg.id}
-                  className="bg-white rounded-[20px] shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-100"
-                >
-                  <div className="grid md:grid-cols-2 gap-0">
-                    {/* Image Section */}
-                    <div className="relative h-[300px] md:h-auto">
-                      <ImageWithFallback
-                        src={pkg.image}
-                        alt={pkg.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute top-4 left-4 bg-white px-4 py-2 rounded-full shadow-md">
-                        <span className="text-[#1f751f]">{pkg.duration}</span>
-                      </div>
-                      <div className="absolute top-4 right-4 bg-white px-4 py-2 rounded-full shadow-md flex items-center gap-2">
-                        <Star className="w-5 h-5 fill-[#fbbf24] text-[#fbbf24]" />
-                        <span>{pkg.rating}</span>
-                        <span className="text-gray-500 text-[14px]">({pkg.reviews})</span>
-                      </div>
-                    </div>
-
-                    {/* Content Section */}
-                    <div className="p-6 md:p-8 flex flex-col justify-between">
-                      <div>
-                        <h3 className="text-[24px] sm:text-[28px] text-[#333333] mb-3">
-                          {pkg.title}
-                        </h3>
-                        <p className="text-[16px] text-[#686868] mb-6 leading-[26px]">
-                          {pkg.description}
-                        </p>
-
-                        {/* Highlights */}
-                        <div className="mb-6">
-                          <h4 className="text-[18px] text-[#333333] mb-3">Tour Highlights:</h4>
-                          <ul className="space-y-2">
-                            {pkg.highlights.map((highlight, i) => (
-                              <li key={i} className="flex items-start gap-2">
-                                <Check className="w-5 h-5 text-[#1f751f] mt-0.5 flex-shrink-0" />
-                                <span className="text-[15px] text-[#686868]">{highlight}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Price and CTA */}
-                      <div className="border-t border-gray-200 pt-6 mt-6">
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                          <div>
-                            <div className="text-[14px] text-[#686868] mb-1">Starting from</div>
-                            <div className="text-[32px] text-[#1f751f]">{pkg.price}</div>
-                            <div className="text-[13px] text-[#686868]">per person</div>
-                          </div>
-                          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                            <Link
-                              href={pkg.href}
-                              className="bg-[#1f751f] text-white px-6 py-3 rounded-[50px] hover:bg-[#0f440f] transition-colors inline-flex items-center justify-center gap-2"
-                            >
-                              View Details <ChevronRight size={18} />
-                            </Link>
-                            <button
-                              onClick={() => handleBookingOpen({ name: pkg.title, amount: pkg.price })}
-                              className="border border-[#1f751f] text-[#1f751f] px-6 py-3 rounded-[50px] hover:bg-[#1f751f] hover:text-white transition-colors inline-flex items-center justify-center gap-2"
-                            >
-                              Inquire
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+      {/* Safari Packages - Editorial Vertical Layout */}
+      <section className="py-24 px-6">
+        <div className="max-w-[1400px] mx-auto space-y-32">
+          {safariPackages.map((pkg, index) => (
+            <div key={pkg.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div className={`space-y-8 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#888] uppercase">{pkg.duration}</span>
+                    <div className="flex items-center gap-1 text-[#fbbf24]">
+                      <Star size={14} fill="currentColor" />
+                      <span className="text-[12px] font-bold text-[#222]">{pkg.rating}</span>
                     </div>
                   </div>
+
+                  <h2 className="font-serif text-[40px] md:text-[50px] text-[#222] leading-tight mb-4 uppercase tracking-tight">
+                    {pkg.title.split(' ')[0]} <br/>
+                    <span className="text-[#1f751f]">{pkg.title.split(' ').slice(1).join(' ')}</span>
+                  </h2>
+                  <p className="font-['Great_Vibes',_cursive] text-[36px] text-[#c97500] -mt-2 opacity-70">
+                    Starting from {pkg.price}
+                  </p>
                 </div>
-              ))}
+
+                <div className="font-quattro text-[18px] text-[#444] leading-[1.8] space-y-6">
+                  <p>{pkg.description}</p>
+
+                  <div className="space-y-3">
+                    <h4 className="font-serif text-[20px] text-[#222]">Experience Highlights:</h4>
+                    <ul className="space-y-2">
+                      {pkg.highlights.map((highlight, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <Check className="w-5 h-5 text-[#1f751f] mt-1 flex-shrink-0" />
+                          <span className="text-[16px] text-[#666]">{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-6 pt-6 items-center">
+                  <Link href={pkg.href} className="inline-block border-b-2 border-[#1f751f] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors">
+                    View Full Itinerary —
+                  </Link>
+                  <button
+                    onClick={() => handleBookingOpen({ name: pkg.title, amount: pkg.price })}
+                    className="bg-[#1f751f] text-white px-8 py-3 rounded-[50px] font-['Poppins'] uppercase tracking-[2px] text-[12px] hover:bg-[#c97500] transition-all duration-300"
+                  >
+                    Inquire Now
+                  </button>
+                </div>
+              </div>
+
+              <div className={`group ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2px] shadow-2xl">
+                  <ImageWithFallback
+                    src={pkg.image}
+                    alt={pkg.title}
+              
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Included Section - Sage Grid Style */}
+      <section className="py-24 px-6 bg-[#d1dcd0]">
+        <div className="max-w-[1400px] mx-auto text-center mb-16">
+          <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#2c3e2c]/60 uppercase block mb-4">THE DETAILS</span>
+          <h2 className="font-serif text-[38px] md:text-[48px] text-[#2c3e2c] opacity-80 mb-6">
+            The Safari Signature
+          </h2>
+          <div className="h-[1px] w-24 bg-[#2c3e2c]/30 mx-auto" />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
+            {[
+                { icon: Camera, title: "Private Game Drives", desc: "Expertly guided drives in customized 4x4 vehicles with pop-up roofs." },
+                { icon: Tent, title: "Handpicked Stays", desc: "A selection of the finest luxury lodges and intimate tented camps." },
+                { icon: Utensils, title: "Full Board Dining", desc: "All meals included, featuring gourmet bush breakfasts and elegant dinners." },
+                { icon: Shield, title: "Park & Conservation", desc: "All national park entry fees and conservation levies are fully covered." },
+                { icon: Heart, title: "Expert Guiding", desc: "Dedicated professional guides with deep knowledge of flora and fauna." },
+                { icon: Trophy, title: "Seamless Transfers", desc: "Personalized airport meet-and-greet and all internal logistics." }
+            ].map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center group text-center">
+                    <item.icon size={32} strokeWidth={1.5} className="text-[#2c3e2c] mb-6 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <h3 className="font-serif text-[20px] text-[#2c3e2c] mb-3">{item.title}</h3>
+                    <p className="font-quattro text-[15px] text-[#2c3e2c]/70 leading-relaxed max-w-[280px]">{item.desc}</p>
+                </div>
+            ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-6 bg-[#1a1a1a] text-white text-center">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className="font-serif text-[40px] md:text-[55px] mb-8">Ready for your <span className="italic text-[#1f751f]">Wild Adventure?</span></h2>
+          <p className="font-quattro text-white/50 text-[18px] mb-12">
+            Your journey into the heart of Tanzania starts here. Let Ndewedo Tours craft your perfect safari experience.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link
+              href="/inquire"
+              className="inline-block bg-[#1f751f] text-white px-12 py-5 rounded-[50px] font-['Poppins'] uppercase tracking-[3px] text-[14px] hover:bg-[#c97500] transition-colors duration-500"
+            >
+              Build Your Custom Safari
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-block border border-white/30 text-white px-12 py-5 rounded-[50px] font-['Poppins'] uppercase tracking-[3px] text-[14px] hover:bg-white hover:text-black transition-colors duration-500"
+            >
+              Speak to an Expert
+            </Link>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* What's Included */}
-        <section className="py-12 md:py-20 px-4 bg-gradient-to-r from-[rgba(31,117,31,0.04)] to-[rgba(31,117,31,0.04)]">
-          <div className="max-w-[1200px] mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-[32px] sm:text-[40px] text-[#333333] mb-4">
-                What's <span className="text-[#1f751f]">Included</span>
-              </h2>
-              <div className="h-[5px] w-[100px] bg-[#686868] rounded-[30px] mx-auto" />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              <div className="bg-white rounded-[15px] p-6 text-center shadow-md">
-                <div className="bg-[#1f751f]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Camera className="text-[#1f751f]" size={32} />
-                </div>
-                <h3 className="text-[20px] text-[#333333] mb-2">Game Drives</h3>
-                <p className="text-[15px] text-[#686868]">Daily game drives in 4x4 safari vehicles with pop-up roofs</p>
-              </div>
-
-              <div className="bg-white rounded-[15px] p-6 text-center shadow-md">
-                <div className="bg-[#1f751f]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Tent className="text-[#1f751f]" size={32} />
-                </div>
-                <h3 className="text-[20px] text-[#333333] mb-2">Accommodation</h3>
-                <p className="text-[15px] text-[#686868]">Comfortable lodges or tented camps in prime locations</p>
-              </div>
-
-              <div className="bg-white rounded-[15px] p-6 text-center shadow-md">
-                <div className="bg-[#1f751f]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Utensils className="text-[#1f751f]" size={32} />
-                </div>
-                <h3 className="text-[20px] text-[#333333] mb-2">All Meals</h3>
-                <p className="text-[15px] text-[#686868]">Full board meals throughout the safari</p>
-              </div>
-
-              <div className="bg-white rounded-[15px] p-6 text-center shadow-md">
-                <div className="bg-[#1f751f]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="text-[#1f751f]" size={32} />
-                </div>
-                <h3 className="text-[20px] text-[#333333] mb-2">Expert Guides</h3>
-                <p className="text-[15px] text-[#686868]">Professional safari guides with extensive wildlife knowledge</p>
-              </div>
-
-              <div className="bg-white rounded-[15px] p-6 text-center shadow-md">
-                <div className="bg-[#1f751f]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MapPin className="text-[#1f751f]" size={32} />
-                </div>
-                <h3 className="text-[20px] text-[#333333] mb-2">Park Fees</h3>
-                <p className="text-[15px] text-[#686868]">All national park entrance and conservation fees</p>
-              </div>
-
-              <div className="bg-white rounded-[15px] p-6 text-center shadow-md">
-                <div className="bg-[#1f751f]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Check className="text-[#1f751f]" size={32} />
-                </div>
-                <h3 className="text-[20px] text-[#333333] mb-2">Airport Transfers</h3>
-                <p className="text-[15px] text-[#686868]">Pick-up and drop-off at Arusha or Kilimanjaro airport</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
       <BookingModal
         isOpen={isBookingOpen}
         onClose={() => setBookingOpen(false)}
         safariPackage={selectedPackage}
       />
-    </>
+    </div>
   );
 }

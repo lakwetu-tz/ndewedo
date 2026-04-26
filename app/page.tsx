@@ -1,16 +1,68 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
-import { 
-  ArrowRight, Mountain, Users, Camera, Heart, Star, 
-  Sparkles, Calendar, Clock, MapPin, Compass, ShieldCheck, 
-  Map, MessageSquare
+import {
+  ArrowRight
 } from 'lucide-react';
 import DestinationsCarousel from '@/components/DestinationsCarousel';
 import TailorMadeSafariWizard from '@/components/TailorMadeSafariWizard';
 import { posts } from './blog/data';
+import ExperienceSection from '@/components/ExperienceSection';
+
+export const experiences = [
+  {
+    label: "AVIAN SYMPHONY",
+    title: "Scenic Views",
+    description: "Tanzania is a sanctuary for bird lovers, boasting over 1,000 species. From the majestic Fish Eagle to the vibrant Lilac-breasted Roller, every moment is a discovery in the canopy of our great rift valley.",
+    image: "https://images.unsplash.com/photo-1590606549564-aa4198e9b47c?q=80&w=1000&auto=format&fit=crop",
+    link: "/safari-packages"
+  },
+  {
+    label: "AQUATIC SERENITY",
+    title: "River Sailing",
+    description: "Drift silently along the ancient veins of the landscape. Experience the unique perspective of wildlife from the water, where hippos play and elephants come to drink at the golden hour of sunset.",
+    image: "https://www.exploretanzaniatours.com/wp-content/uploads/2022/02/6f-705x470.jpg",
+    link: "/safari-packages"
+  },
+  {
+    label: "CLOSE ENCOUNTERS",
+    title: "Walking Safari",
+    description: "Feel the earth beneath your feet and the pulse of the bush. An intimate connection with nature, guided by experts who reveal the secrets of the small things often missed from a vehicle.",
+    image: "https://images.unsplash.com/photo-1700221721339-087ad22b3908?q=80&w=1000&auto=format&fit=crop",
+    link: "/safari-packages"
+  },
+  {
+    label: "ANCIENT GIANTS",
+    title: "Baobab View",
+    description: "Stand in awe before the majestic Baobabs, the 'Trees of Life'. These ancient sentinels of the savannah have witnessed centuries of African history, standing tall against the horizon of Tarangire.",
+    image: "https://images.squarespace-cdn.com/content/v1/562cfd50e4b0db46045fb676/5e051405-5988-41a7-9e9c-46255bd5223c/**elle-leontiev-Wtv8wbxk-M4-unsplash-2.jpg?format=1000w",
+    link: "/safari-packages"
+  },
+  {
+    label: "CULTURAL HERITAGE",
+    title: "Stone Town",
+    description: "Lose yourself in the winding alleys of Zanzibar's heart. A melting pot of cultures, spices, and architectural marvels that tell the story of a bygone era and a vibrant present.",
+    image: "https://safaris-r-us.com/wp-content/uploads/2021/11/stone-town.jpg",
+    link: "/zanzibar-excursions"
+  },
+  {
+    label: "AERIAL PERSPECTIVE",
+    title: "Balloon Safari",
+    description: "Rise with the sun and float silently over the Serengeti. Witness the great migration from above, a vast tapestry of life in motion across the endless plains of the savannah.",
+    image: "https://safaris-r-us.com/wp-content/uploads/2022/01/ballon2.jpg",
+    link: "/safari-packages"
+  },
+  {
+    label: "THE CLASSIC SAFARI",
+    title: "Game Drive",
+    description: "Into the heart of the drama. Our expert guides translate the language of the wilderness, leading you to those rare, breathtaking moments where nature reveals its rawest truths.",
+    image: "https://images.unsplash.com/photo-1661696710086-c84f5471aeb3?q=80&w=1000&auto=format&fit=crop",
+    link: "/safari-packages"
+  }
+];
+
 
 export default function HomePage() {
   const [showWizard, setShowWizard] = useState(false);
@@ -19,7 +71,7 @@ export default function HomePage() {
   const recentPosts = posts.slice(0, 3);
 
   return (
-    <div className="w-full font-['Poppins']">
+    <div className="w-full font-open overflow-x-hidden">
       {/* Hero Section with Background Video */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <video
@@ -27,6 +79,7 @@ export default function HomePage() {
           muted
           loop
           playsInline
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="https://www.asiliaafrica.com/wp-content/uploads/2024/04/30sec-Teaser-2-master-clean.mp4" type="video/mp4" />
@@ -35,230 +88,257 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-[1200px]">
-          <h1 className="text-[36px] sm:text-[50px] md:text-[60px] lg:text-[70px] mb-4 sm:mb-6 leading-tight font-bold">
+          <h1 className="text-[36px] font-serif sm:text-[50px] md:text-[60px] lg:text-[70px] mb-4 sm:mb-6 leading-tight font-bold">
             Experience the Magic of <span className="text-[#c97500]">Tanzania</span>
           </h1>
-          <p className="text-[16px] sm:text-[20px] md:text-[24px] mb-6 sm:mb-8 max-w-[800px] mx-auto leading-relaxed">
-            Embark on unforgettable adventures through wildlife safaris, mountain treks, and authentic cultural experiences
+          <p className="text-[18px] sm:text-[22px] md:text-[24px] mb-8 sm:mb-10 max-w-[800px] mx-auto font-light leading-relaxed">
+            Discover breathtaking landscapes, majestic wildlife, and vibrant cultures with Ndewedo Tours and Safari.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <Link
-              href="/safaris"
-              className="bg-[#1f751f] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-[50px] text-[16px] sm:text-[18px] font-semibold hover:bg-[#0f440f] transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+              href="/safari-packages"
+              className="w-full sm:w-auto bg-[#1f751f] text-white px-10 py-4 rounded-[4px] text-[14px] font-bold uppercase tracking-[3px] hover:bg-[#c97500] transition-all shadow-xl flex items-center justify-center gap-2"
             >
-              Explore Safaris <ArrowRight size={20} />
+              Explore Safaris <ArrowRight size={18} />
             </Link>
             <button
               onClick={() => setShowWizard(true)}
-              className="bg-transparent border-2 border-white text-white px-8 sm:px-10 py-3 sm:py-4 rounded-[50px] text-[16px] sm:text-[18px] font-semibold hover:bg-white hover:text-[#0f440f] transition-all transform hover:scale-105 inline-flex items-center justify-center"
+              className="w-full sm:w-auto bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 rounded-[4px] text-[14px] font-bold uppercase tracking-[3px] hover:bg-white hover:text-[#0f440f] transition-all"
             >
-              Plan Your Journey
+              Plan Your Trip
             </button>
           </div>
         </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <span className="text-white/60 text-[10px] uppercase tracking-[4px] font-medium">Scroll</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white/60 to-transparent" />
+        </div>
       </section>
+
+        {/* WELCOME TO OUR WORLD SECTION */}
+       
+              
+              {/* LEFT COLUMN: Text + Cabin image (exact stacked layout) */}
+              {/* <div className="lg:col-span-5">
+                <h2 className="text-[28px] sm:text-[45px] font-bold font-serif text-primary mb-6 text-start px-4">
+                  Welcome to<br />Ndewedo Tour & Adventure 
+                </h2>
+                
+                <div className="text-[#555] text-[18px] sm:text-[20px] leading-[1.8] font-light tracking-wide opacity-90 mb-12">
+                  Discover the unique atmosphere of our private residential club communities. Once experienced, never forgotten. This is where comfortable, modern living in nature&apos;s most spectacular international settings. Seamlessly exclusive. Community welcoming. Find your unique world - a place where families love to be, creating unforgettable moments, together.
+                </div> */}
+
+                {/* Cabin image - exact position and size below text */}
+                {/* <div className="mt-12 lg:mt-16 rounded-lg  overflow-hidden shadow-2xl">
+                  <img 
+                    src="https://picsum.photos/id/1016/700/460" 
+                    alt="Man relaxing by fire pit outside luxury cabin at dusk"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div> */}
+
+              {/* RIGHT COLUMN: Turquoise kayak image with mountain silhouette overlay */}
+              {/* <div className="lg:col-span-7 relative"> */}
+                {/* Main kayak image - tall and exact proportions */}
+                {/* <img 
+                  src="https://picsum.photos/id/1005/900/1100" 
+                  alt="Yellow kayak and people in crystal turquoise ocean"
+                  className="w-full lg:h-[640px] object-cover rounded-[4px] "
+                /> */}
+
+                {/* Mountain silhouette overlay - exact jagged decorative element on left side of image */}
+                {/* <svg 
+                  className="absolute -left-6 lg:-left-12 top-12 lg:top-20 w-52 lg:w-72 h-96 text-stone-300 z-10 drop-shadow-md"
+                  viewBox="0 0 600 600"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                > */}
+                  {/* Multiple mountain peaks to match the design */}
+                  {/* <path d="M0 600 L120 320 L250 480 L380 210 L520 390 L600 280 L600 600 Z" />
+                  <path d="M80 600 L200 280 L320 420 L450 180 L580 350 L600 600 Z" opacity="0.85" />
+                  <path d="M150 600 L270 250 L400 380 L500 160 L600 320 L600 600 Z" opacity="0.7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section> */}
+
+
 
       {/* Services Overview */}
-      <section className="py-16 sm:py-24 px-4 bg-white">
+      <section className="py-24 px-4 bg-white border-b border-gray-50">
         <div className="max-w-[1400px] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-[32px] sm:text-[45px] font-bold text-[#222] mb-4">
+            <h2 className="text-[28px] sm:text-[45px] font-serif font-bold text-[#222] mb-4">
               Your Gateway to <span className="text-[#1f751f]">Authentic Tanzania</span>
             </h2>
-            <div className="h-[5px] w-[80px] bg-[#1f751f] rounded-[30px] mx-auto mb-6" />
-            <p className="text-[17px] text-[#666] max-w-[850px] mx-auto leading-relaxed">
-              We deliver exceptional travel experiences tailored to your dreams, from thrilling wildlife encounters to deep cultural immersions and legendary mountain treks.
+            <p className="text-[#666] max-w-[800px] mx-auto text-[16px] sm:text-[18px]">
+              From the endless plains of the Serengeti to the turquoise waters of Zanzibar, we create unforgettable journeys that connect you with the heart of Africa.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: "Wildlife Safaris", icon: Camera, link: "/safaris", image: "https://images.unsplash.com/photo-1681139504760-4c17f2c8b380?w=800", desc: "Witness Africa's incredible wildlife in their natural habitat across Tanzania's renowned national parks." },
-              { title: "Kilimanjaro Trekking", icon: Mountain, link: "/trekking", image: "https://images.unsplash.com/photo-1613061445510-e296bfedb73e?w=800", desc: "Conquer Africa's highest peak with expert guides and well-planned routes for an unforgettable climb." },
-              { title: "Cultural Tours", icon: Users, link: "/cultural-tours", image: "https://images.unsplash.com/photo-1603703218844-a526eefafb05?w=800", desc: "Immerse yourself in local traditions with visits to Maasai tribes and ancient local villages." },
-              { title: "Volunteer Programs", icon: Heart, link: "/volunteer", image: "https://images.unsplash.com/photo-1535757596010-06fbdd41fd42?w=800", desc: "Make a difference by volunteering in local communities and conservation projects." }
-            ].map((service, i) => (
-              <div key={i} className="bg-white rounded-[25px] shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col group overflow-hidden">
-                <div className="relative h-[220px] overflow-hidden">
-                  <ImageWithFallback src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 bg-[#1f751f] w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <service.icon className="text-white" size={24} />
-                  </div>
-                </div>
-                <div className="p-8 flex-grow flex flex-col">
-                  <h3 className="text-[22px] font-bold text-[#222] mb-3 group-hover:text-[#1f751f] transition-colors">{service.title}</h3>
-                  <p className="text-[15px] text-[#666] mb-6 leading-relaxed flex-grow">{service.desc}</p>
-                  <Link href={service.link} className="text-[#1f751f] font-bold inline-flex items-center gap-2 group/btn">
-                    Learn More <ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-1" />
-                  </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+            <div className="group cursor-pointer">
+              <div className="relative aspect-[4/5] mb-6 overflow-hidden rounded-[4px]">
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1765706730243-b8964b3d5692?q=80&w=1000&auto=format&fit=crop"
+                  alt="Luxury Safari"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 text-white">
+                  <span className="text-[#c97500] text-[12px] font-bold uppercase tracking-[2px] mb-2 block">Premium Experience</span>
+                  <h3 className="text-[24px] font-serif font-bold">Luxury Safaris</h3>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Destinations Section */}
-      <section className="py-20 px-4 bg-gray-50 relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-[32px] sm:text-[45px] font-bold text-[#222] mb-4">
-              Explore <span className="text-[#1f751f]">East Africa</span>
-            </h2>
-            <div className="h-[5px] w-[80px] bg-[#1f751f] rounded-[30px] mx-auto mb-6" />
-            <p className="text-[17px] text-[#666] max-w-[850px] mx-auto leading-relaxed">
-              Discover iconic destinations across Tanzania and Kenya, from pristine island beaches to majestic mountain ranges.
-            </p>
-          </div>
-          <DestinationsCarousel />
-        </div>
-      </section>
-
-      {/* Elegant Tailor-Made Safari Section */}
-      <section className="py-24 px-4 bg-white">
-        <div className="max-w-[1300px] mx-auto">
-          <div className="bg-[#0f440f] rounded-[40px] overflow-hidden shadow-2xl relative">
-            <div className="absolute top-0 right-0 w-1/2 h-full hidden lg:block">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2068&auto=format&fit=crop"
-                alt="Tailor-Made Safari"
-                className="w-full h-full object-cover opacity-60"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0f440f] via-[#0f440f]/40 to-transparent" />
-            </div>
-
-            <div className="relative z-10 grid lg:grid-cols-2 gap-12 p-8 sm:p-12 lg:p-20">
-              <div className="space-y-8">
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-[#c97500]/20 px-4 py-2 rounded-full mb-6">
-                    <Sparkles className="text-[#c97500]" size={20} />
-                    <span className="text-[13px] font-bold uppercase tracking-widest text-[#c97500]">Your Journey, Your Way</span>
-                  </div>
-                  <h2 className="text-[36px] sm:text-[48px] font-bold text-white leading-tight mb-6">
-                    Craft Your Personal <br/><span className="text-[#c97500]">Safari Masterpiece</span>
-                  </h2>
-                  <p className="text-[18px] text-white/80 leading-relaxed max-w-[500px]">
-                    Every traveler is unique. Design your perfect adventure by choosing destinations, activities, and dates that match your dreams.
-                  </p>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-6">
-                  {[
-                    { icon: Compass, title: "Custom Routes", desc: "Personalized itineraries" },
-                    { icon: Calendar, title: "Flexible Dates", desc: "Travel at your pace" },
-                    { icon: ShieldCheck, title: "Expert Support", desc: "24/7 dedicated assistance" },
-                    { icon: Map, title: "Prime Locations", desc: "The best hidden gems" }
-                  ].map((item, i) => (
-                    <div key={i} className="flex gap-4 items-start bg-white/5 p-4 rounded-2xl border border-white/10">
-                      <div className="bg-[#c97500] p-2.5 rounded-xl flex-shrink-0 shadow-lg shadow-[#c97500]/20">
-                        <item.icon className="text-white" size={20} />
-                      </div>
-                      <div>
-                        <h4 className="text-white font-bold text-[16px]">{item.title}</h4>
-                        <p className="text-white/60 text-[13px]">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <button
-                  onClick={() => setShowWizard(true)}
-                  className="bg-[#c97500] text-white px-10 py-4 rounded-[50px] text-[18px] font-bold hover:bg-white hover:text-[#0f440f] transition-all transform hover:-translate-y-1 shadow-xl shadow-[#c97500]/20 flex items-center justify-center gap-3 w-full sm:w-auto"
-                >
-                  <Sparkles size={22} />
-                  Start Building My Safari
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Recent Blog Updates (Replaces Why Choose Us) */}
-      <section className="py-24 px-4 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div className="text-left">
-              <h2 className="text-[32px] sm:text-[45px] font-bold text-[#222] mb-4">
-                Recent <span className="text-[#1f751f]">Safari Updates</span>
-              </h2>
-              <div className="h-[5px] w-[80px] bg-[#1f751f] rounded-[30px] mb-6" />
-              <p className="text-[17px] text-[#666] max-w-[600px] leading-relaxed">
-                Stay updated with the latest stories, wildlife sightings, and expert travel tips from the heart of Tanzania.
+              <p className="text-[#666] leading-relaxed font-light mb-4">
+                Experience the wild in unparalleled comfort with our handpicked luxury lodges and private guides.
               </p>
+              <Link href="/safari-packages" className="text-[#1f751f] font-bold font-serif text-[13px] uppercase tracking-[2px] flex items-center gap-2 hover:gap-3 transition-all">
+                Discover More <ArrowRight size={16} />
+              </Link>
             </div>
-            <Link href="/blog" className="inline-flex items-center gap-2 bg-white text-[#1f751f] px-8 py-3 rounded-full font-bold border border-[#1f751f]/20 hover:bg-[#1f751f] hover:text-white transition-all shadow-sm">
-              View All Posts <ArrowRight size={20} />
-            </Link>
+
+            <div className="group cursor-pointer">
+              <div className="relative aspect-[4/5] mb-6 overflow-hidden rounded-[4px]">
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1735637082450-deeffc9fbc2a?q=80&w=1000&auto=format&fit=crop"
+                  alt="Mount Kilimanjaro"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 text-white">
+                  <span className="text-[#c97500] text-[12px] font-bold uppercase tracking-[2px] mb-2 block">Adventure</span>
+                  <h3 className="text-[24px] font-serif font-bold">Kilimanjaro Treks</h3>
+                </div>
+              </div>
+              <p className="text-[#666] leading-relaxed mb-4">
+                Conquer the Roof of Africa with our expert team of porters and guides. Safety and success are our priorities.
+              </p>
+              <Link href="/mountain-climbing" className="text-[#1f751f] font-serif font-bold text-[13px] uppercase tracking-[2px] flex items-center gap-2 hover:gap-3 transition-all">
+                Discover More <ArrowRight size={16} />
+              </Link>
+            </div>
+
+            <div className="group cursor-pointer">
+              <div className="relative aspect-[4/5] mb-6 overflow-hidden rounded-[4px]">
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1628531895979-af3fb7617ef7?q=80&w=1000&auto=format&fit=crop"
+                  alt="Zanzibar Beach"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 text-white">
+                  <span className="text-[#c97500] text-[12px] font-bold uppercase tracking-[2px] mb-2 block">Relaxation</span>
+                  <h3 className="text-[24px] font-serif font-bold">Zanzibar Getaways</h3>
+                </div>
+              </div>
+              <p className="text-[#666] leading-relaxed mb-4">
+                Unwind on pristine white sands and explore the historic Stone Town in our tailored beach packages.
+              </p>
+              <Link href="/zanzibar-excursions" className="text-[#1f751f] font-serif font-bold text-[13px] uppercase tracking-[2px] flex items-center gap-2 hover:gap-3 transition-all">
+                Discover More <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Destinations Carousel */}
+      <DestinationsCarousel />
+
+      {/* Experiences Section - Simbavati Inspired Layout */}
+      <div className="bg-white">
+
+        <div className='flex flex-col items-center'>
+          {/* <h2 className="text-[28px] sm:text-[45px] font-bold text-[#222] mb-6 text-center px-4">
+            Experience <span className="text-[#1f751f]">the heart of Africa</span>
+          </h2>
+
+          {/* Centered Decorative Line */}
+          {/* <div className="w-42 h-[2px] bg-[#222] mb-10" /> */}
+        </div>
+
+        {experiences.map((exp, index) => (
+          <ExperienceSection key={index} exp={exp} index={index} />
+        ))}
+      </div>
+
+      {/* Blog/Stories Section - Travel Journal */}
+      <section className="py-32 px-4 bg-[#fcfcfc] border-t border-gray-100">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>              
+              <h2 className="text-[32px] sm:text-[45px] font-serif font-bold text-[#222]">Stories from <span className="text-[#1f751f]">The Wild</span></h2>
+              <Link href="/blog" className="text-[#222] border-b-2 border-[#1f751f] pb-1 font-bold text-[13px] uppercase tracking-[2px] hover:text-[#1f751f] transition-all">View All Stories</Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {recentPosts.map((post, i) => (
-              <Link href={post.href} key={i} className="group block h-full">
-                <article className="bg-white rounded-[25px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 h-full flex flex-col border border-gray-100">
-                  <div className="relative h-[240px] overflow-hidden">
-                    <ImageWithFallback src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-1.5 rounded-full text-[12px] font-bold text-[#1f751f] shadow-sm uppercase tracking-wider">
-                      {post.date}
-                    </div>
-                  </div>
-                  <div className="p-8 flex flex-col flex-grow">
-                    <h3 className="text-[22px] font-bold text-[#222] mb-4 leading-tight group-hover:text-[#1f751f] transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-[15px] text-[#666] leading-relaxed mb-6 line-clamp-3 flex-grow">
-                      {post.excerpt}
-                    </p>
-                    <div className="pt-6 border-t border-gray-100 mt-auto flex items-center justify-between">
-                      <span className="text-[14px] font-bold text-[#1f751f] uppercase tracking-widest flex items-center gap-2">
-                        Read Story <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                      </span>
-                      <div className="flex gap-2">
-                        <MessageSquare size={16} className="text-gray-300" />
-                      </div>
-                    </div>
-                  </div>
-                </article>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {recentPosts.map((post) => (
+              <Link href={`/blog/${post.slug}`} key={post.slug} className="group">
+                <div className="relative aspect-[16/10] mb-6 overflow-hidden rounded-[4px]">
+                  <ImageWithFallback
+                    src={post.image}
+                    alt={post.title}
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex items-center gap-4 mb-3 text-[12px] text-[#888] font-medium uppercase tracking-[1px]">
+                  <span>{post.date}</span>
+                  <span className="w-1 h-1 bg-[#c97500] rounded-full" />
+                </div>
+                <h3 className="text-[20px] font-bold font-serif text-[#222] mb-3 group-hover:text-[#1f751f] transition-colors leading-tight">
+                  {post.title}
+                </h3>
+                <p className="text-[#666] text-[15px] leading-relaxed line-clamp-2 font-light">
+                  {post.excerpt}
+                </p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final Call to Action */}
-      <section className="py-24 px-4 bg-[#0f440f] text-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-[120px]" />
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#c97500] rounded-full blur-[150px]" />
+      {/* Call to Action - Tailor Made Section */}
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0">
+          <ImageWithFallback
+            src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2000&auto=format&fit=crop"
+            alt="Safari Background"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
-        
-        <div className="max-w-[1000px] mx-auto text-center relative z-10">
-          <h2 className="text-[36px] sm:text-[50px] font-bold mb-6">
-            Ready to Start Your <br/><span className="text-[#c97500]">African Adventure?</span>
-          </h2>
-          <p className="text-[18px] sm:text-[22px] mb-10 text-white/80 max-w-[700px] mx-auto leading-relaxed">
-            Let us help you plan the perfect Tanzania experience tailored exactly to your dreams. Your journey begins here.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <button
-              onClick={() => setShowWizard(true)}
-              className="bg-[#1f751f] text-white px-10 py-4 rounded-[50px] text-[18px] font-bold hover:bg-white hover:text-[#0f440f] transition-all transform hover:-translate-y-1 shadow-2xl flex items-center justify-center gap-2"
-            >
-              Get Started Today <ArrowRight size={22} />
-            </button>
-            <Link
-              href="/contact"
-              className="bg-transparent border-2 border-white/30 text-white px-10 py-4 rounded-[50px] text-[18px] font-bold hover:bg-white/10 transition-all flex items-center justify-center"
-            >
-              Speak to an Expert
-            </Link>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4">
+          <div className="max-w-[700px]">
+            <span className="text-[#c97500] text-[14px] font-bold uppercase tracking-[4px] mb-4 block">Tailor-Made Experience</span>
+            <h2 className="text-[32px] sm:text-[50px] font-serif text-white leading-tight mb-6">
+              Dreaming of a <span className="italic">Unique</span> Safari?
+            </h2>
+            <p className="text-[16px] sm:text-[18px] mb-10 text-white/90 leading-relaxed font-light drop-shadow-md">
+              Let us help you plan the perfect Tanzania experience tailored exactly to your dreams. Your journey begins here.
+            </p>
+            <div className="flex justify-end md:justify-start">
+              <button
+                onClick={() => setShowWizard(true)}
+                className="bg-[#c97500] text-white px-12 py-4 rounded-[4px] text-[14px] font-bold uppercase tracking-[3px] hover:bg-white hover:text-[#0f440f] transition-all shadow-2xl"
+              >
+                Inspire Me
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Tailor-Made Safari Wizard Modal */}
-      <TailorMadeSafariWizard isOpen={showWizard} onClose={() => setShowWizard(false)} />
+      {/* Wizard Modal */}
+      {showWizard && (
+        <TailorMadeSafariWizard isOpen={showWizard} onClose={() => setShowWizard(false)} />
+      )}
     </div>
   );
 }

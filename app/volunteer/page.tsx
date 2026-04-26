@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Heart, Users, GraduationCap, TreePine, ArrowRight } from 'lucide-react'
+import { Heart, Users, GraduationCap, TreePine, ArrowRight, CheckCircle2, HelpingHand, Globe } from 'lucide-react'
 import { HeroSection } from '@/components/HeroSection'
 
 export const metadata: Metadata = {
@@ -9,142 +9,176 @@ export const metadata: Metadata = {
 }
 
 export default function VolunteerPage() {
+  const programs = [
+    {
+      title: 'Education',
+      subtitle: 'Knowledge is Power',
+      description: 'Teach English, mathematics, or other subjects in local schools. Help with after-school programs and educational activities for children of all ages.',
+      icon: GraduationCap,
+      image: 'https://img.volunteerworld.com/img/default/e0e63fd24397471cd16670480628ed8506733562/IMG4658.jpg?Height=560&Width=560'
+    },
+    {
+      title: 'Healthcare',
+      subtitle: 'Healing Hands',
+      description: 'Assist in local clinics and health centers. Support medical professionals, participate in health education campaigns, and help improve community health.',
+      icon: Heart,
+      image: 'https://www.goodhopevolunteers.com/uploads/_processed_/2/4/csm_Health_Care_Project_1_3d5e9202e0.png'
+    },
+    {
+      title: 'Conservation',
+      subtitle: 'Protecting Heritage',
+      description: 'Work on wildlife conservation, reforestation, and environmental education projects. Help protect Tanzania\'s incredible natural heritage.',
+      icon: TreePine,
+      image: 'https://vcotanzania.org/wp-content/uploads/2024/06/Screenshot-2024-06-19-105037.png'
+    },
+    {
+      title: 'Development',
+      subtitle: 'Building Futures',
+      description: 'Support local communities with infrastructure projects, women\'s empowerment programs, and sustainable development initiatives.',
+      icon: Users,
+      image: 'https://img.volunteerworld.com/img/default/cc6992033cb60e750dc35ef1f2d091d4715063b4/IMG20190726125247.jpg?Width=722'
+    }
+  ];
+
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
+      {/* Hero Section */}
       <HeroSection 
         title="Volunteer Programs"
-        description="Make a meaningful impact in Tanzania through our community-focused volunteer programs"
+        description="Make a meaningful impact in Tanzania through our community-focused volunteer programs."
         image="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070&auto=format&fit=crop"
         ctaText="Apply Now"
         ctaLink="/contact"
       />
 
-      <section className="py-20 px-4">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[40px] font-semibold text-[#333333] mb-4">
-              Our <span className="text-[#1f751f]">Programs</span>
-            </h2>
-            <div className="h-[5px] w-[100px] bg-[#686868] rounded-[30px] mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-[20px] shadow-lg p-8">
-              <div className="bg-[#1f751f] w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                <GraduationCap className="text-white" size={32} />
-              </div>
-              <h3 className="text-[28px] font-semibold text-[#333333] mb-4">Education Programs</h3>
-              <p className="text-[18px] text-[#686868] leading-[28.8px]">
-                Teach English, mathematics, or other subjects in local schools. Help with after-school programs and educational activities for children of all ages.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-[20px] shadow-lg p-8">
-              <div className="bg-[#1f751f] w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                <Heart className="text-white" size={32} />
-              </div>
-              <h3 className="text-[28px] font-semibold text-[#333333] mb-4">Healthcare Support</h3>
-              <p className="text-[18px] text-[#686868] leading-[28.8px]">
-                Assist in local clinics and health centers. Support medical professionals, participate in health education campaigns, and help improve community health.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-[20px] shadow-lg p-8">
-              <div className="bg-[#1f751f] w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                <TreePine className="text-white" size={32} />
-              </div>
-              <h3 className="text-[28px] font-semibold text-[#333333] mb-4">Conservation Projects</h3>
-              <p className="text-[18px] text-[#686868] leading-[28.8px]">
-                Work on wildlife conservation, reforestation, and environmental education projects. Help protect Tanzania's incredible natural heritage.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-[20px] shadow-lg p-8">
-              <div className="bg-[#1f751f] w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                <Users className="text-white" size={32} />
-              </div>
-              <h3 className="text-[28px] font-semibold text-[#333333] mb-4">Community Development</h3>
-              <p className="text-[18px] text-[#686868] leading-[28.8px]">
-                Support local communities with infrastructure projects, women's empowerment programs, and sustainable development initiatives.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-gradient-to-r from-[rgba(31,117,31,0.04)] to-[rgba(31,117,31,0.04)]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[40px] font-semibold text-[#333333] mb-4">
-              How It <span className="text-[#1f751f]">Works</span>
-            </h2>
-            <div className="h-[5px] w-[100px] bg-[#686868] rounded-[30px] mx-auto" />
-          </div>
-
-          <div className="text-[18px] text-[#686868] leading-[28.8px] space-y-6 max-w-[900px] mx-auto">
-            <p>
-              Our volunteer programs are designed to create meaningful connections between volunteers and local communities while making a real difference. Programs typically run from 2 weeks to 3 months, though longer-term placements can be arranged.
-            </p>
-            <p>
-              All volunteers receive a thorough orientation upon arrival, including cultural training, language basics, and project-specific guidance. You'll be supported by our local team throughout your stay and have the opportunity to explore Tanzania during your free time.
-            </p>
-            <p>
-              Accommodation is provided with local families or in volunteer houses, offering an immersive cultural experience. Meals are included, and you'll have the chance to learn Swahili and participate in community events.
-            </p>
-            <p className="font-semibold text-[#1f751f]">
-              A portion of your program fee directly supports the communities you serve, ensuring sustainable impact beyond your volunteer period.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[40px] font-semibold text-[#333333] mb-4">
-              Requirements & <span className="text-[#1f751f]">Expectations</span>
-            </h2>
-            <div className="h-[5px] w-[100px] bg-[#686868] rounded-[30px] mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[18px] text-[#686868]">
-            <div className="space-y-4">
-              <h3 className="text-[24px] font-semibold text-[#333333]">Requirements:</h3>
-              <ul className="space-y-2 list-disc list-inside">
-                <li>Minimum age: 18 years old</li>
-                <li>Basic English proficiency</li>
-                <li>Flexibility and cultural sensitivity</li>
-                <li>Commitment to minimum program duration</li>
-                <li>Clean criminal background check</li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-[24px] font-semibold text-[#333333]">What's Included:</h3>
-              <ul className="space-y-2 list-disc list-inside">
-                <li>Airport pickup and orientation</li>
-                <li>Accommodation and meals</li>
-                <li>In-country support</li>
-                <li>Project placement and supervision</li>
-                <li>Certificate of completion</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-[#0f440f] text-white">
-        <div className="max-w-[1000px] mx-auto text-center">
-          <h2 className="text-[40px] font-semibold mb-6">
-            Ready to Make a <span className="text-[#c97500]">Difference</span>?
+      {/* Intro Quote Section */}
+      <section className="py-24 px-6 text-center bg-[#fdfcfb]">
+        <div className="max-w-[800px] mx-auto">
+          <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#c97500] uppercase block mb-8">IMPACT</span>
+          <h2 className="font-serif text-[32px] md:text-[42px] text-[#222] leading-relaxed italic opacity-80">
+            "The best way to find yourself is to lose yourself in the service of others."
           </h2>
-          <p className="text-[20px] mb-8">
-            Join us in creating positive change in Tanzania
+          <div className="h-[1px] w-20 bg-[#1f751f] mx-auto mt-12" />
+        </div>
+      </section>
+
+      {/* Programs - Editorial Vertical Layout */}
+      <section className="py-24 px-6">
+        <div className="max-w-[1400px] mx-auto space-y-32">
+          {programs.map((program, index) => (
+            <div key={index} className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div className={`space-y-8 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                <div>
+                  <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#888] uppercase block mb-4">{program.subtitle}</span>
+                  <h2 className="font-serif text-[48px] md:text-[60px] text-[#222] leading-tight mb-4">
+                    {program.title} <span className="text-[#1f751f]">Projects</span>
+                  </h2>
+                </div>
+
+                <div className="font-quattro text-[18px] text-[#444] leading-[1.8] space-y-6">
+                  <p>{program.description}</p>
+                </div>
+
+                <div className="pt-6">
+                  <Link href="/contact" className="inline-block border-b-2 border-[#1f751f] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors">
+                    Inquire About {program.title} —
+                  </Link>
+                </div>
+              </div>
+
+              <div className={`group ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2px]">
+                  <img
+                    alt={program.title}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    src={program.image}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How It Works - Sage Grid Style */}
+      <section className="py-24 px-6 bg-[#d1dcd0]">
+        <div className="max-w-[1400px] mx-auto text-center mb-16">
+          <h2 className="font-serif text-[38px] md:text-[48px] text-[#2c3e2c] opacity-80 mb-6">
+            The Journey
+          </h2>
+          <div className="h-[1px] w-24 bg-[#2c3e2c]/30 mx-auto" />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
+            {[
+                { icon: Globe, title: "Orientation", desc: "Thorough cultural training, language basics, and project guidance." },
+                { icon: Users, title: "Local Living", desc: "Immersive experience living with local families or volunteer houses." },
+                { icon: HelpingHand, title: "Sustainable Support", desc: "Fees directly support the communities you serve for long-term impact." },
+                { icon: CheckCircle2, title: "Full Support", desc: "In-country team available 24/7 to support your journey." },
+                { icon: CheckCircle2, title: "Cultural Events", desc: "Participate in local community events and learn Swahili." },
+                { icon: CheckCircle2, title: "Certificate", desc: "Receive a certificate of completion acknowledging your contribution." }
+            ].map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center group text-center">
+                    <item.icon size={32} strokeWidth={1.5} className="text-[#2c3e2c] mb-6 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <h3 className="font-serif text-[20px] text-[#2c3e2c] mb-3">{item.title}</h3>
+                    <p className="font-quattro text-[15px] text-[#2c3e2c]/70 leading-relaxed max-w-[280px]">{item.desc}</p>
+                </div>
+            ))}
+        </div>
+      </section>
+
+      {/* Requirements Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="space-y-8">
+            <h2 className="font-serif text-[36px] text-[#222]">Requirements</h2>
+            <ul className="space-y-4">
+              {[
+                'Minimum age: 18 years old',
+                'Basic English proficiency',
+                'Flexibility and cultural sensitivity',
+                'Commitment to minimum program duration',
+                'Clean criminal background check'
+              ].map((req, i) => (
+                <li key={i} className="flex items-center gap-4 font-quattro text-[18px] text-[#666]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#c97500]" />
+                  {req}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="space-y-8">
+            <h2 className="font-serif text-[36px] text-[#222]">What's Included</h2>
+            <ul className="space-y-4">
+              {[
+                'Airport pickup and orientation',
+                'Accommodation and meals',
+                'In-country support',
+                'Project placement and supervision',
+                'Certificate of completion'
+              ].map((inc, i) => (
+                <li key={i} className="flex items-center gap-4 font-quattro text-[18px] text-[#666]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#1f751f]" />
+                  {inc}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-6 bg-[#1a1a1a] text-white text-center">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className="font-serif text-[40px] md:text-[55px] mb-8">Ready to make a <span className="italic text-[#1f751f]">difference?</span></h2>
+          <p className="font-quattro text-white/50 text-[18px] mb-12">
+            Join us in creating positive change in Tanzania. Your contribution matters.
           </p>
           <Link 
             href="/contact"
-            className="bg-[#1f751f] text-white px-10 py-4 rounded-[50px] text-[18px] hover:bg-white hover:text-[#0f440f] transition-colors inline-flex items-center gap-2"
+            className="inline-block bg-[#1f751f] text-white px-12 py-5 rounded-[50px] font-['Poppins'] uppercase tracking-[3px] text-[14px] hover:bg-[#c97500] transition-colors duration-500"
           >
-            Apply Now <ArrowRight size={20} />
+            Apply to Volunteer
           </Link>
         </div>
       </section>

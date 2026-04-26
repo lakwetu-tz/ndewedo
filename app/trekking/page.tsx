@@ -1,136 +1,144 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Mountain, ArrowRight } from 'lucide-react'
+import { ArrowRight, Mountain, CheckCircle2, Compass, Wind, Timer } from 'lucide-react'
 import { HeroSection } from '@/components/HeroSection'
 
 export const metadata: Metadata = {
-  title: 'Kilimanjaro Trekking - Ndewedo Tours | Climb Africa\'s Highest Peak',
+  title: 'Kilimanjaro Trekking - Ndewedo Tours & Adventure | Climb Africa\'s Highest Peak',
   description: 'Climb Mount Kilimanjaro with experienced guides. Multiple routes available including Machame, Marangu, Lemosho, and Rongai routes.',
 }
 
 export default function TrekkingPage() {
+  const trekkingRoutes = [
+    {
+      name: 'Machame Route',
+      duration: '7 Days',
+      tagline: 'The Scenic Path',
+      description: 'The "Whiskey Route" is one of the most scenic and popular routes. It offers excellent acclimatization and stunning views throughout the journey.',
+      image: 'https://images.unsplash.com/photo-1613061445510-e296bfedb73e?q=80&w=1000&auto=format&fit=crop',
+    },
+    {
+      name: 'Marangu Route',
+      duration: '5-6 Days',
+      tagline: 'Classic Huts',
+      description: 'Known as the "Coca-Cola Route," this is the only route with hut accommodations. It\'s considered easier but has a lower success rate due to faster ascent.',
+      image: 'https://images.unsplash.com/photo-1702041423376-a469cbebe66d?q=80&w=1000&auto=format&fit=crop',
+    },
+    {
+      name: 'Lemosho Route',
+      duration: '7-8 Days',
+      tagline: 'The Wilderness',
+      description: 'One of the most beautiful and remote routes, offering excellent acclimatization and diverse scenery. Perfect for those seeking a wilderness experience.',
+      image: 'https://images.unsplash.com/photo-1658823201587-9a3c95a878f4?q=80&w=1000&auto=format&fit=crop',
+    },
+    {
+      name: 'Rongai Route',
+      duration: '6-7 Days',
+      tagline: 'The Northern Approach',
+      description: 'The only route approaching from the north, offering a different perspective and typically drier conditions. Less crowded than other routes.',
+      image: 'https://images.unsplash.com/photo-1621414050468-bee4f935bb9d?q=80&w=1000&auto=format&fit=crop',
+    }
+  ];
+
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
       <HeroSection 
         title="Kilimanjaro Trekking"
-        description="Conquer Africa's highest peak at 5,895 meters with our expert mountain guides"
+        description="Conquer Africa's highest peak at 5,895 meters with our expert mountain guides and a legacy of safety."
         image="https://images.unsplash.com/photo-1613061445510-e296bfedb73e?auto=format&fit=crop&q=80&w=2069"
         ctaText="Plan Your Trek"
         ctaLink="/contact"
       />
 
-      <section className="py-20 px-4">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[40px] font-semibold text-[#333333] mb-4">
-              Choose Your <span className="text-[#1f751f]">Route</span>
-            </h2>
-            <div className="h-[5px] w-[100px] bg-[#686868] rounded-[30px] mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-[20px] p-8 shadow-lg">
-              <h3 className="text-[28px] font-semibold text-[#1f751f] mb-4">Machame Route (7 Days)</h3>
-              <p className="text-[18px] text-[#686868] leading-[28.8px] mb-4">
-                The "Whiskey Route" is one of the most scenic and popular routes. It offers excellent acclimatization and stunning views throughout the journey.
-              </p>
-              <p className="text-[16px] text-[#333333] font-semibold">Difficulty: Moderate to Challenging</p>
-              <p className="text-[16px] text-[#333333] font-semibold">Success Rate: 85%</p>
-            </div>
-
-            <div className="bg-white rounded-[20px] p-8 shadow-lg">
-              <h3 className="text-[28px] font-semibold text-[#1f751f] mb-4">Marangu Route (5-6 Days)</h3>
-              <p className="text-[18px] text-[#686868] leading-[28.8px] mb-4">
-                Known as the "Coca-Cola Route," this is the only route with hut accommodations. It's considered easier but has a lower success rate due to faster ascent.
-              </p>
-              <p className="text-[16px] text-[#333333] font-semibold">Difficulty: Moderate</p>
-              <p className="text-[16px] text-[#333333] font-semibold">Success Rate: 70%</p>
-            </div>
-
-            <div className="bg-white rounded-[20px] p-8 shadow-lg">
-              <h3 className="text-[28px] font-semibold text-[#1f751f] mb-4">Lemosho Route (7-8 Days)</h3>
-              <p className="text-[18px] text-[#686868] leading-[28.8px] mb-4">
-                One of the most beautiful and remote routes, offering excellent acclimatization and diverse scenery. Perfect for those seeking a wilderness experience.
-              </p>
-              <p className="text-[16px] text-[#333333] font-semibold">Difficulty: Moderate</p>
-              <p className="text-[16px] text-[#333333] font-semibold">Success Rate: 90%</p>
-            </div>
-
-            <div className="bg-white rounded-[20px] p-8 shadow-lg">
-              <h3 className="text-[28px] font-semibold text-[#1f751f] mb-4">Rongai Route (6-7 Days)</h3>
-              <p className="text-[18px] text-[#686868] leading-[28.8px] mb-4">
-                The only route approaching from the north, offering a different perspective and typically drier conditions. Less crowded than other routes.
-              </p>
-              <p className="text-[16px] text-[#333333] font-semibold">Difficulty: Moderate</p>
-              <p className="text-[16px] text-[#333333] font-semibold">Success Rate: 80%</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-gradient-to-r from-[rgba(31,117,31,0.04)] to-[rgba(31,117,31,0.04)]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[40px] font-semibold text-[#333333] mb-4">
-              What's <span className="text-[#1f751f]">Included</span>
-            </h2>
-            <div className="h-[5px] w-[100px] bg-[#686868] rounded-[30px] mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[18px] text-[#686868]">
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="text-[#1f751f] text-[24px]">✓</div>
-                <p>Experienced mountain guides and porters</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="text-[#1f751f] text-[24px]">✓</div>
-                <p>All camping equipment (tents, sleeping mats)</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="text-[#1f751f] text-[24px]">✓</div>
-                <p>Three meals per day plus snacks</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="text-[#1f751f] text-[24px]">✓</div>
-                <p>Park fees and rescue fees</p>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="text-[#1f751f] text-[24px]">✓</div>
-                <p>Airport transfers</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="text-[#1f751f] text-[24px]">✓</div>
-                <p>Pre-trek briefing and equipment check</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="text-[#1f751f] text-[24px]">✓</div>
-                <p>Summit certificate upon completion</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="text-[#1f751f] text-[24px]">✓</div>
-                <p>Emergency oxygen and first aid kit</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-[#0f440f] text-white">
-        <div className="max-w-[1000px] mx-auto text-center">
-          <h2 className="text-[40px] font-semibold mb-6">
-            Ready to Climb <span className="text-[#c97500]">Kilimanjaro</span>?
+      {/* Intro Quote Section */}
+      <section className="py-24 px-6 text-center bg-[#fdfcfb]">
+        <div className="max-w-350 mx-auto">
+          <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#c97500] uppercase block mb-8">THE SUMMIT</span>
+          <h2 className="font-serif text-[32px] md:text-[42px] text-[#222] leading-relaxed italic opacity-80">
+            "It is not the mountain we conquer, but ourselves."
           </h2>
-          <p className="text-[20px] mb-8">
-            Contact us today to start planning your Kilimanjaro adventure
+          <div className="h-px w-20 bg-[#1f751f] mx-auto mt-12" />
+        </div>
+      </section>
+
+      {/* Routes - Editorial Vertical Layout */}
+      <section className="py-24 px-6">
+        <div className="max-w-350 mx-auto space-y-32">
+          {trekkingRoutes.map((route, index) => (
+            <div key={index} className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div className={`space-y-8 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                <div>
+                  <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#888] uppercase block mb-4">{route.tagline}</span>
+                  <h2 className="font-serif text-[48px] md:text-[60px] text-[#222] leading-tight mb-4">
+                    {route.name.split(' ')[0]} <br/> <span className="text-[#1f751f]">{route.name.split(' ').slice(1).join(' ')}</span>
+                  </h2>
+                  <p className="font-['Great_Vibes',_cursive] text-[40px] text-[#c97500] -mt-4 opacity-70">{route.duration}</p>
+                </div>
+
+                <div className="font-quattro text-[18px] text-[#444] leading-[1.8]">
+                  <p>{route.description}</p>
+                </div>
+
+                <div className="pt-6">
+                  <Link href="/contact" className="inline-block border-b-2 border-[#1f751f] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors">
+                    Plan This Route —
+                  </Link>
+                </div>
+              </div>
+
+              <div className={`group ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2px]">
+                  <img
+                    alt={route.name}
+                    className="w-full h-[85vh] object-cover transition-transform duration-1000 group-hover:scale-110"
+                    src={route.image}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Included Section - Sage Grid Style */}
+      <section className="py-24 px-6 bg-[#d1dcd0]">
+        <div className="max-w-350 mx-auto text-center mb-16">
+          <h2 className="font-serif text-[38px] md:text-[48px] text-[#2c3e2c] opacity-80 mb-6">
+            The Trek Legacy
+          </h2>
+          <div className="h-[1px] w-24 bg-[#2c3e2c]/30 mx-auto" />
+        </div>
+
+        <div className="max-w-350 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
+            {[
+                { icon: Compass, title: "Expert Guides", desc: "Wilderness First Responder certified guides lead every expedition." },
+                { icon: Wind, title: "Safety First", desc: "Daily health checks and emergency oxygen on all summit attempts." },
+                { icon: Timer, title: "High Success", desc: "Strategically planned itineraries for optimal altitude acclimatization." },
+                { icon: CheckCircle2, title: "Full Porter Support", desc: "Our porters handle the heavy lifting so you can focus on the trail." },
+                { icon: CheckCircle2, title: "Mountain Cuisine", desc: "Nutritious, fresh meals prepared daily by our specialized chefs." },
+                { icon: CheckCircle2, title: "Quality Gear", desc: "Premium mountain tents and all essential camping equipment provided." }
+            ].map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center group text-center">
+                    <item.icon size={32} strokeWidth={1.5} className="text-[#2c3e2c] mb-6 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <h3 className="font-serif text-[20px] text-[#2c3e2c] mb-3">{item.title}</h3>
+                    <p className="font-quattro text-[15px] text-[#2c3e2c]/70 leading-relaxed max-w-[280px]">{item.desc}</p>
+                </div>
+            ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-6 bg-[#1a1a1a] text-white text-center">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className="font-serif text-[40px] md:text-[55px] mb-8">Conquer the <span className="italic text-[#1f751f]">Roof of Africa.</span></h2>
+          <p className="font-quattro text-white/50 text-[18px] mb-12">
+            Your journey to Uhuru Peak starts here. Join Ndewedo Tours for a safe, professional, and life-changing climb.
           </p>
-          <Link 
+          <Link
             href="/contact"
-            className="bg-[#1f751f] text-white px-10 py-4 rounded-[50px] text-[18px] hover:bg-white hover:text-[#0f440f] transition-colors inline-flex items-center gap-2"
+            className="inline-block bg-[#1f751f] text-white px-12 py-5 rounded-[50px] font-['Poppins'] uppercase tracking-[3px] text-[14px] hover:bg-[#c97500] transition-colors duration-500"
           >
-            Plan Your Trek <ArrowRight size={20} />
+            Inquire About Trekking
           </Link>
         </div>
       </section>

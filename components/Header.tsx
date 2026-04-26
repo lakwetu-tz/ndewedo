@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { motion, AnimatePresence } from "framer-motion";
 
 const safariPackages = [
   {
@@ -42,6 +43,8 @@ export default function Header({
     useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Auto-detect pages that should have transparent header
   // Only home page is transparent by default now
@@ -49,7 +52,23 @@ export default function Header({
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+
+      // Determine if scrolled enough to change appearance
+      setScrolled(currentScrollY > 50);
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down and past a threshold
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
     // Check initial scroll position
@@ -58,7 +77,7 @@ export default function Header({
     window.addEventListener("scroll", handleScroll);
     return () =>
       window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Force transparent state on home page before scrolling, otherwise use solid state
   const isTransparent = shouldBeTransparent && !scrolled;
@@ -70,15 +89,18 @@ export default function Header({
     ? "hover:text-white/80"
     : "hover:text-[#1f751f]";
 
-  // Use a negative margin top to overlap the hero section content on home page
-  // Use sticky for others
-  const headerClass = shouldBeTransparent
-    ? `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm" : "bg-transparent"}`
-    : `sticky top-0 z-50 transition-all duration-300 ${transparent && !scrolled ? "bg-transparent" : "bg-white/95 backdrop-blur-sm shadow-sm"}`;
+  const headerClass = `fixed top-0 left-0 right-0 z-50 w-full transition-colors duration-300 ${
+    isTransparent ? "bg-transparent" : "bg-white/95 backdrop-blur-sm shadow-sm"
+  }`;
 
   return (
-    <header className={headerClass}>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-[20px] py-[15px] sm:py-[20px]">
+    <motion.header
+      className={headerClass}
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.9, ease: "easeOut" }}
+    >
+      <div className="max-w-[1400px] font-open mx-auto px-4 sm:px-[20px] py-[15px] sm:py-[20px]">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
@@ -119,33 +141,40 @@ export default function Header({
                 Safaris
                 <ChevronDown className="w-[19px] h-[19px]" />
               </Link>
-              {safariDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-[15px] py-3 min-w-[320px] border border-gray-100">
-                  {safariPackages.map((pkg, index) => (
-                    <Link
-                      key={index}
-                      href={pkg.href}
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
-                    >
-                      <div className="w-16 h-16 rounded-[10px] overflow-hidden flex-shrink-0">
-                        <ImageWithFallback
-                          src={pkg.image}
-                          alt={pkg.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <div className="text-[#0f440f] text-[15px]">
-                          {pkg.title}
+              <AnimatePresence>
+                {safariDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-[15px] py-3 min-w-[320px] border border-gray-100"
+                  >
+                    {safariPackages.map((pkg, index) => (
+                      <Link
+                        key={index}
+                        href={pkg.href}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="w-16 h-16 rounded-[4px] overflow-hidden flex-shrink-0">
+                          <ImageWithFallback
+                            src={pkg.image}
+                            alt={pkg.title}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
-                        <div className="text-[#686868] text-[13px]">
-                          {pkg.description}
+                        <div>
+                          <div className="text-[#0f440f] text-[15px]">
+                            {pkg.title}
+                          </div>
+                          <div className="text-[#686868] text-[13px]">
+                            {pkg.description}
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <Link
@@ -177,7 +206,7 @@ export default function Header({
           {/* Desktop CTA Button */}
           <Link
             href="/inquire"
-            className={`hidden lg:block px-[20.8px] py-[10.8px] rounded-[50px] font-['Poppins'] text-[18px] transition-colors ${
+            className={`hidden lg:block px-[20.8px] py-[10.8px] rounded-[4px] font-quattro text-[18px] transition-colors ${
               isTransparent
                 ? "bg-transparent border border-white text-white hover:bg-white hover:text-[#0f440f]"
                 : "bg-transparent border border-[#102310] text-[#0f440f] hover:bg-[#0f440f] hover:text-white"
@@ -201,79 +230,86 @@ export default function Header({
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4 bg-white rounded-b-[20px] shadow-xl absolute top-[80px] left-0 right-0 px-4">
-            <nav className="flex flex-col gap-3">
-              <Link
-                href="/"
-                className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <div className="py-2">
-                <div className="text-[#0f440f] mb-2">
-                  Safaris
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4 bg-white rounded-b-[20px] shadow-xl absolute top-[80px] left-0 right-0 px-4 overflow-hidden"
+            >
+              <nav className="flex flex-col gap-3">
+                <Link
+                  href="/"
+                  className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/about"
+                  className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <div className="py-2">
+                  <div className="text-[#0f440f] mb-2">
+                    Safaris
+                  </div>
+                  <div className="pl-4 flex flex-col gap-2">
+                    {safariPackages.map((pkg, index) => (
+                      <Link
+                        key={index}
+                        href={pkg.href}
+                        className="text-[#686868] hover:text-[#1f751f] transition-colors py-1"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {pkg.title}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-                <div className="pl-4 flex flex-col gap-2">
-                  {safariPackages.map((pkg, index) => (
-                    <Link
-                      key={index}
-                      href={pkg.href}
-                      className="text-[#686868] hover:text-[#1f751f] transition-colors py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {pkg.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <Link
-                href="/trekking"
-                className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Trekking
-              </Link>
-              <Link
-                href="/cultural-tours"
-                className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Cultural Tours
-              </Link>
-              <Link
-                href="/volunteer"
-                className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Volunteer
-              </Link>
-              <Link
-                href="/blog"
-                className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blog
-              </Link>
-              <Link
-                href="/contact"
-                className="bg-[#0f440f] text-white px-6 py-3 rounded-[50px] text-center mt-2 hover:bg-[#1f751f] transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Inquire Today
-              </Link>
-            </nav>
-          </div>
-        )}
+                <Link
+                  href="/trekking"
+                  className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Trekking
+                </Link>
+                <Link
+                  href="/cultural-tours"
+                  className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Cultural Tours
+                </Link>
+                <Link
+                  href="/volunteer"
+                  className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Volunteer
+                </Link>
+                <Link
+                  href="/blog"
+                  className="text-[#0f440f] hover:text-[#1f751f] transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Blog
+                </Link>
+                <Link
+                  href="/contact"
+                  className="bg-[#0f440f] text-white px-6 py-3 rounded-[4px] text-center mt-2 hover:bg-[#1f751f] transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Inquire Today
+                </Link>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 }

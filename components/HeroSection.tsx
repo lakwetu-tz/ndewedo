@@ -31,8 +31,8 @@ function ArrowRightSvg() {
 
 export function HeroSection({ title, description, image, ctaText = "Learn more", ctaLink = "/contact", showCta = true, onCtaClick }: HeroSectionProps) {
   const CtaButton = () => (
-    <div className="box-border content-center flex flex-wrap gap-[20px] items-center justify-center px-[17.6px] py-[16.6px] relative rounded-[50px] shrink-0 border border-solid border-white hover:bg-[#1f751fAA] hover:text-[#0f440f] transition-colors group">
-      <div className="flex flex-col font-['Poppins'] justify-center leading-[25.6px] not-italic relative shrink-0 text-[16px] text-center text-nowrap text-white group-hover:text-[white]">
+    <div className="box-border content-center flex flex-wrap gap-[20px] items-center justify-center px-[30px] py-[16px] relative rounded-[50px] shrink-0 border border-solid border-white hover:bg-[#1f751f] transition-all duration-300 group cursor-pointer">
+      <div className="flex flex-col font-['Poppins'] justify-center leading-none not-italic relative shrink-0 text-[14px] font-medium uppercase tracking-[2px] text-center text-nowrap text-white">
         {ctaText}
       </div>
       <ArrowRightSvg />
@@ -40,53 +40,46 @@ export function HeroSection({ title, description, image, ctaText = "Learn more",
   );
 
   return (
-    <section className="relative py-[30px] px-[20px] md:px-[60px]">
-      <div className="h-[550px] max-w-[1400px] relative rounded-[20px] shrink-0 w-full mx-auto">
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none rounded-[20px]">
-          <div className="absolute inset-0 overflow-hidden rounded-[20px]">
-            <img
-              alt={title}
-              className="absolute h-full w-full object-cover"
-              src={image}
-            />
-          </div>
-          <div
-            className="absolute inset-0 rounded-[20px]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(6, 40, 6, 0) 0%, rgba(6, 40, 6, 0.35) 50%, rgb(7, 25, 7) 100%), linear-gradient(90deg, rgba(6, 40, 6, 0.35) 0%, rgba(6, 40, 6, 0.35) 100%)",
-            }}
+    <section className="relative w-full overflow-hidden">
+      <div className="h-[85vh] w-full relative">
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0">
+          <img
+            alt={title}
+            className="h-full w-full object-cover"
+            src={image}
           />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
-        <div className="flex flex-col justify-end max-w-inherit size-full">
-          <div className="box-border content-stretch flex flex-col h-[550px] items-start justify-end max-w-inherit pl-[20px] md:pl-[80px] pr-[20px] md:pr-[280px] py-[50px] relative w-full">
-            <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 max-w-[1040px] w-full">
-              <h1 className="flex flex-col font-['Poppins'] font-semibold justify-center md:leading-[64px] leading-tight not-italic relative shrink-0 text-[32px] md:text-[40px] text-white">
-                {title}
-              </h1>
-              {description && (
-                <div className="box-border content-stretch flex flex-col items-start pl-0 pr-[10.53px] py-0 relative shrink-0 w-full">
-                  <div className="flex flex-col font-['Poppins'] justify-center leading-[28.8px] not-italic relative shrink-0 text-[16px] md:text-[18px] text-white">
-                    {description}
-                  </div>
-                </div>
-              )}
-              {showCta && (
-                <div className="box-border content-stretch flex flex-col items-start pb-0 pt-[20px] px-0 relative shrink-0">
-                  {onCtaClick ? (
-                    <button onClick={onCtaClick}><CtaButton /></button>
-                  ) : (
-                    <Link href={ctaLink}><CtaButton /></Link>
-                  )}
-                </div>
-              )}
-            </div>
-            <div className="absolute max-w-[1920px] opacity-80 right-[20px] md:right-[65px] size-[60px] md:size-[80px] top-[20px] md:top-[65px]">
-              <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <img alt="" className="absolute left-0 max-w-none size-full top-0" src="/assets/5e9bdb8ec0de5cb6f763bdda7c8e2df02f49cb5d.png" />
+
+        {/* Content Centered */}
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-4 max-w-[1400px] mx-auto">
+          <div className="flex flex-col items-center gap-6 max-w-[900px]">
+            <h1 className="font-serif text-[42px] md:text-[68px] text-white font-bold leading-[1.1] drop-shadow-md">
+              {title}
+            </h1>
+
+            {description && (
+              <div className="font-quattro text-[18px] md:text-[22px] text-white/90 leading-relaxed max-w-[700px]">
+                {description}
               </div>
-            </div>
+            )}
+
+            {showCta && (
+              <div className="mt-8">
+                {onCtaClick ? (
+                  <button onClick={onCtaClick} className="appearance-none border-none bg-transparent p-0"><CtaButton /></button>
+                ) : (
+                  <Link href={ctaLink}><CtaButton /></Link>
+                )}
+              </div>
+            )}
           </div>
+        </div>
+
+        {/* Minimalist Logo/Icon Accent */}
+        <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 opacity-30">
+             <img alt="" className="h-[40px] w-auto brightness-0 invert" src="/assets/5e9bdb8ec0de5cb6f763bdda7c8e2df02f49cb5d.png" />
         </div>
       </div>
     </section>

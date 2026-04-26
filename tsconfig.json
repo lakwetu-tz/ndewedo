@@ -36,8 +36,14 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     ".next\\dev/types/**/*.ts",
-    ".next\\dev/types/**/*.ts"
-, "ft.js"  ],
+    ".next\\dev/types/**/*.ts",
+    "ft.js",
+    "out/types/**/*.ts",
+    "out/dev/types/**/*.ts",
+    "next.config.mjs",
+    "dist/types/**/*.ts",
+    "dist/dev/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

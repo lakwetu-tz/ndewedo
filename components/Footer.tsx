@@ -50,15 +50,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-r from-[rgba(31,117,31,0.04)] to-[rgba(31,117,31,0.04)] py-[75px] px-[20px]">
+    <footer className="bg-gradient-to-r from-[rgba(31,117,31,0.04)] to-[rgba(31,117,31,0.04)] py-[25px] px-[20px]">
       <div className="max-w-[1400px] mx-auto">
         {/* Newsletter Section */}
         <div className="flex flex-col md:flex-row items-center justify-between pb-[25.8px] border-b border-[rgba(155,155,155,0.65)] mb-[50px] gap-6">
           <div className="flex-1 text-center md:text-left w-full">
-            <h3 className="font-['Poppins'] text-[#0f440f] text-[28px] sm:text-[36px] md:text-[40px] leading-[1.3] mb-0 font-bold">
+            <h3 className="font-serif text-[#0f440f] text-[18px] sm:text-[22px] md:text-[28px] leading-[1.3] mb-0 font-bold">
               Get Updated with Latest
             </h3>
-            <p className="font-['Poppins'] text-[#0f440f] text-[28px] sm:text-[36px] md:text-[40px] leading-[1.3]">
+            <p className="font-serif text-[#0f440f] text-[18px] sm:text-[22px] md:text-[28px] leading-[1.3]">
               News Letters
             </p>
           </div>
@@ -73,7 +73,7 @@ export default function Footer() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 disabled={isSubmitting}
-                className="bg-white border border-[#dadbdd] rounded-[50px] px-[20px] sm:px-[30px] py-[16px] font-['Segoe_UI'] text-[16px] text-[#868e96] w-full sm:w-[200px] outline-none focus:border-[#0f440f] h-[56px] disabled:opacity-70"
+                className="bg-white border border-[#dadbdd] rounded-[4px] px-[8px] sm:px-[16px] py-[8px] font-quattro text-[14px] text-[#868e96] w-full sm:w-[200px] outline-none focus:border-[#0f440f] h-[56px] disabled:opacity-70"
               />
               <input
                 type="email"
@@ -82,13 +82,13 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isSubmitting}
-                className="bg-white border border-[#dadbdd] rounded-[50px] px-[20px] sm:px-[30px] py-[16px] font-['Segoe_UI'] text-[16px] text-[#868e96] w-full sm:w-[350px] outline-none focus:border-[#0f440f] h-[56px] disabled:opacity-70"
+                className="bg-white border border-[#dadbdd] rounded-[4px] px-[8px] sm:px-[16px] py-[8px] font-quattro text-[14px] text-[#868e96] w-full sm:w-[350px] outline-none focus:border-[#0f440f] h-[56px] disabled:opacity-70"
               />
             </div>
             <button 
               type="submit"
               disabled={isSubmitting}
-              className="bg-[#0f440f] text-white px-[35px] py-[16px] rounded-[50px] font-['Arial'] text-[16px] font-bold whitespace-nowrap hover:bg-[#1f751f] transition-colors w-full sm:w-auto h-[56px] flex items-center justify-center min-w-[180px] disabled:opacity-70 disabled:cursor-not-allowed"
+              className="bg-[#0f440f] text-white px-[8px] py-[8 px] rounded-[4px] font-quattro text-[14px] font-bold whitespace-nowrap hover:bg-[#1f751f] transition-colors w-full sm:w-auto h-[56px] flex items-center justify-center min-w-[180px] disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <Loader2 className="animate-spin" size={20} />
@@ -100,80 +100,80 @@ export default function Footer() {
         </div>
 
         {/* Footer Main Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-[50px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-[32px]">
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="h-[60px] sm:h-[82px] w-[180px] sm:w-[249px] mb-[25px]">
+            <div className="h-[56px] sm:h-[76px] w-[174px] sm:w-[235px] mb-[18px]">
               <img 
                 src="https://ndewedotours.com/wp-content/uploads/2025/02/Ndewedo-Logo3-249x82-2.webp"
                 alt="Ndewedo Tours"
                 className="h-full w-full object-contain"
               />
             </div>
-            <p className="font-['Poppins'] text-[16px] text-[#686868] leading-[25.6px]">
+            <p className="font-quattro text-[14px] text-[#686868] leading-[22.6px]">
               Specialize in delivering exceptional travel experiences tailored to your needs.
             </p>
           </div>
 
           {/* Tanzania & UK Offices */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <h4 className="font-['Poppins'] text-[24px] sm:text-[28px] md:text-[32px] text-neutral-700 mb-[9.6px] font-bold">Tanzania Offices</h4>
-            <p className="font-['Poppins'] text-[16px] text-[#686868] leading-[25.6px]">
+            <h4 className="font-open text-[14px] sm:text-[18px] md:text-[22px] text-neutral-700 mb-[9.6px] font-bold">Tanzania Offices</h4>
+            <p className="font-quattro text-[12px] text-[#686868] leading-[25.6px]">
               P.O.BOX 11677 -Sakina Arusha
             </p>
-            <p className="font-['Poppins'] text-[16px] text-[#686868] leading-[25.6px]">
+            <p className="font-quattro text-[12px] text-[#686868] leading-[25.6px]">
               info@ndewedotours.com
             </p>
-            <p className="font-['Poppins'] text-[16px] text-[#686868] leading-[25.6px]">
+            <p className="font-quattro text-[12px] text-[#686868] leading-[25.6px]">
               +255 753 243 280
             </p>
 
-            <h4 className="font-['Poppins'] text-[24px] sm:text-[28px] md:text-[32px] text-neutral-700 mb-[9.6px] mt-[20px] font-bold">UK Offices</h4>
-            <p className="font-['Poppins'] text-[16px] text-[#686868] leading-[25.6px]">
+            <h4 className="font-open text-[14px] sm:text-[18px] md:text-[22px] text-neutral-700 mb-[9.6px] mt-[20px] font-bold">UK Offices</h4>
+            <p className="font-quattro text-[12px] text-[#686868] leading-[25.6px]">
               KY1 1PA, Kirkcaldy, Scotland, UK
             </p>
-            <p className="font-['Poppins'] text-[16px] text-[#686868] leading-[25.6px]">
+            <p className="font-quattro text-[12px] text-[#686868] leading-[25.6px]">
               natalie@ndewedotours.com
             </p>
-            <p className="font-['Poppins'] text-[16px] text-[#686868] leading-[25.6px]">
+            <p className="font-quattro text-[12px] text-[#686868] leading-[25.6px]">
               +44 743 203 8845
             </p>
           </div>
 
           {/* Company Links */}
           <div>
-            <h4 className="font-['Poppins'] text-[24px] sm:text-[28px] md:text-[32px] text-neutral-700 mb-[9.6px] font-bold">Company</h4>
+            <h4 className="font-open text-[14px] sm:text-[18px] md:text-[22px] text-neutral-700 mb-[9.6px] font-bold">Company</h4>
             <ul className="space-y-2">
-              <li><Link href="/about" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">About Us</Link></li>
-              <li><Link href="/gallery" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Gallery</Link></li>
-              <li><Link href="/faqs" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">FAQs</Link></li>
-              <li><Link href="/contact" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Contact us</Link></li>
-              <li><Link href="/reviews" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Client Reviews</Link></li>
+              <li><Link href="/about" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">About Us</Link></li>
+              <li><Link href="/gallery" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Gallery</Link></li>
+              <li><Link href="/faqs" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">FAQs</Link></li>
+              <li><Link href="/contact" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Contact us</Link></li>
+              <li><Link href="/reviews" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Client Reviews</Link></li>
             </ul>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-['Poppins'] text-[24px] sm:text-[28px] md:text-[32px] text-neutral-700 mb-[9.6px] font-bold">Quick Links</h4>
+            <h4 className="font-quattro text-[14px] sm:text-[18px] md:text-[22px] text-neutral-700 mb-[9.6px] font-bold">Quick Links</h4>
             <ul className="space-y-2">
-              <li><Link href="/" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Home</Link></li>
-              <li><Link href="/cultural-tours" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Cultural Tours</Link></li>
-              <li><Link href="/trekking" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Trekkings</Link></li>
-              <li><Link href="/safaris" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Safaris</Link></li>
-              <li><Link href="/blog" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Blog</Link></li>
+              <li><Link href="/" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Home</Link></li>
+              <li><Link href="/cultural-tours" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Cultural Tours</Link></li>
+              <li><Link href="/trekking" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Trekkings</Link></li>
+              <li><Link href="/safaris" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Safaris</Link></li>
+              <li><Link href="/blog" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Blog</Link></li>
             </ul>
           </div>
 
           {/* Privacy & Policies */}
           <div>
-            <h4 className="font-['Poppins'] text-[24px] sm:text-[28px] md:text-[32px] text-neutral-700 mb-[9.6px] font-bold">Privacy Policy</h4>
+            <h4 className="font-open text-[14px] sm:text-[18px] md:text-[22px] text-neutral-700 mb-[9.6px] font-bold">Privacy Policy</h4>
             <ul className="space-y-2">
-              <li><Link href="/privacy-policy" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/privacy-policy" className="font-quattro text-[14px] text-[#686868] hover:text-[#1f751f] transition-colors">Privacy Policy</Link></li>
             </ul>
-            <h4 className="font-['Poppins'] text-[24px] sm:text-[28px] md:text-[32px] text-neutral-700 mb-[9.6px] mt-[20px] font-bold">Conditions</h4>
+            <h4 className="font-open text-[14px] sm:text-[18px] md:text-[22px] text-neutral-700 mb-[9.6px] mt-[20px] font-bold">Conditions</h4>
             <ul className="space-y-2">
-              <li><Link href="/terms" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Terms & Conditions</Link></li>
-              <li><Link href="/refund-policy" className="font-['Poppins'] text-[16px] text-[#686868] hover:text-[#1f751f] transition-colors">Refund Policy</Link></li>
+              <li><Link href="/terms" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/refund-policy" className="font-quattro text-[12px] text-[#686868] hover:text-[#1f751f] transition-colors">Refund Policy</Link></li>
             </ul>
           </div>
         </div>
@@ -181,22 +181,22 @@ export default function Footer() {
         {/* Social Media & CTA */}
         <div className="flex flex-col md:flex-row items-center justify-between pb-[21px] border-b border-[rgba(155,155,155,0.65)] mb-[30px] gap-6">
           <div className="flex gap-[15px]">
-            <a href="#" className="bg-[#0f440f] rounded-full w-[45px] h-[45px] flex items-center justify-center hover:bg-[#1f751f] transition-colors">
-              <Facebook className="text-white" size={22} />
+            <a href="#" className="bg-[#0f440f] rounded-full w-[32px] h-[32px] flex items-center justify-center hover:bg-[#1f751f] transition-colors">
+              <Facebook className="text-white" size={18} />
             </a>
-            <a href="#" className="bg-[#0f440f] rounded-full w-[45px] h-[45px] flex items-center justify-center hover:bg-[#1f751f] transition-colors">
-              <Instagram className="text-white" size={22} />
+            <a href="#" className="bg-[#0f440f] rounded-full w-[32px] h-[32px] flex items-center justify-center hover:bg-[#1f751f] transition-colors">
+              <Instagram className="text-white" size={18} />
             </a>
-            <a href="#" className="bg-[#0f440f] rounded-full w-[45px] h-[45px] flex items-center justify-center hover:bg-[#1f751f] transition-colors">
-              <Twitter className="text-white" size={22} />
+            <a href="#" className="bg-[#0f440f] rounded-full w-[32px] h-[32px] flex items-center justify-center hover:bg-[#1f751f] transition-colors">
+              <Twitter className="text-white" size={18} />
             </a>
-            <a href="#" className="bg-[#0f440f] rounded-full w-[45px] h-[45px] flex items-center justify-center hover:bg-[#1f751f] transition-colors">
-              <Youtube className="text-white" size={22} />
+            <a href="#" className="bg-[#0f440f] rounded-full w-[32px] h-[32px] flex items-center justify-center hover:bg-[#1f751f] transition-colors">
+              <Youtube className="text-white" size={18} />
             </a>
           </div>
           <Link 
             href="/inquire"
-            className="bg-transparent border border-[#102310] text-[#0f440f] px-[30px] py-[12px] rounded-[50px] font-['Poppins'] text-[18px] hover:bg-[#0f440f] hover:text-white transition-colors"
+            className="bg-transparent border border-[#102310] text-[#0f440f] px-[18px] py-[8px] rounded-[4px] font-quattro text-[18px] hover:bg-[#0f440f] hover:text-white transition-colors"
           >
             Inquire Today
           </Link>
@@ -205,11 +205,11 @@ export default function Footer() {
         {/* Copyright */}
         <div className="flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4">
           <div className="flex flex-col md:flex-row items-center gap-2">
-            <p className="font-['Poppins'] text-[15px] text-[#0f440f]">
+            <p className="font-quattro text-[12px] text-[#0f440f]">
               Copyright © 2025 All Rights Reserved
             </p>
           </div>
-          <p className="font-['Poppins'] text-[12px] text-[#0f440f]">
+          <p className="font-quattro text-[12px] text-[#0f440f]">
             Web by <span className="text-[#1f751f] font-bold">Debbido</span>
           </p>
           <div className="flex gap-2">
