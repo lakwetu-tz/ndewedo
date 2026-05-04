@@ -252,19 +252,28 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
-// Validate ../../../app/safaris/cultural-7-day/page.tsx
+// Validate ../../../app/safaris/luxury-13-day/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/safaris/cultural-7-day">> = Specific
-  const handler = {} as typeof import("../../../app/safaris/cultural-7-day/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/safaris/luxury-13-day">> = Specific
+  const handler = {} as typeof import("../../../app/safaris/luxury-13-day/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
 }
 
-// Validate ../../../app/safaris/luxury-13-day/page.tsx
+// Validate ../../../app/safaris/luxury/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/safaris/luxury-13-day">> = Specific
-  const handler = {} as typeof import("../../../app/safaris/luxury-13-day/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/safaris/luxury">> = Specific
+  const handler = {} as typeof import("../../../app/safaris/luxury/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/safaris/packages/cultural-7-day/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/safaris/packages/cultural-7-day">> = Specific
+  const handler = {} as typeof import("../../../app/safaris/packages/cultural-7-day/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

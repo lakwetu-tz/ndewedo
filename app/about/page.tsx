@@ -13,7 +13,7 @@ export default function AboutPage() {
       <HeroSection
         title="About Ndewedo Tours & Adventures"
         description="Your trusted partner for authentic Tanzanian adventures and cultural experiences"
-        image="https://ndewedotours.com/wp-content/uploads/2025/02/pexels-balazsimon-15994191-scaled.jpg"
+        image="https://uc0f72831654c4a3f59e69ed6d58.previews.dropboxusercontent.com/p/thumb/AC9zBm8jFfYxMDLvIZUbLEIHxAh0JeaNWqlxWUy6D82DbisSmwYjVAJuYoTSFi1mPcUc3auuc2MiRQl47HswPJBI1E34yPSnbKmaCFGaE9mgGzy4_y78KQY84UWUBOwrl65c2rB2tqICanScklH4M13vtdO0l32dnNLGu_5c2as0ztFTxu-Jcj33N7QWbnbhf0vNoQUWcRmzO4iSfAbr4lFnbyEG7rm1r35CTLSNHpNRl8ULUii3SWlLSiZn5LJu0M7EZlSwfuYB1gUr4pjq6n9Du-cmhN4dMi5H8_2Sh7NekxzVzW71pALkYYpNHRtIWOaHI9Pn5JvCm1qMg02So4Hqczg3DrAIBlN7c8YViO399Q/p.jpeg"
         ctaText="Contact Us"
         ctaLink="/contact"
       />

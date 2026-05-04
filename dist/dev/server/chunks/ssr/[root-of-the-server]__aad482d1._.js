@@ -74,9 +74,9 @@ function SafarisPage() {
         className: "w-full bg-white",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$HeroSection$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["HeroSection"], {
-                title: "Tanzania Safari Adventures",
+                title: "Safari Tour & Adventures",
                 description: "Witness Africa's incredible wildlife in their natural habitat across Tanzania's world-famous national parks.",
-                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2068&auto=format&fit=crop",
+                image: "https://ucc5ff552e3d45cbda421095a864.previews.dropboxusercontent.com/p/thumb/AC9jxSIWW7qaBoJY9jR9o5-aVYAwKNqTMu40X2IOrbHksTeo2Bp8Cb4AaGU06HAFnd7E0hAxWbz4sfV1Uv16LPqDPsp9dgyGp0DIn6-vy0h77fGkF1OymvYKM1r5OwVWQCtjNDQDY1dLw-gc-lz4skeSqC_BoYXT84RfAfTejYzwycWe86Ydg1pYfPX-NS6MZPEBPGnvl_r7qtiUQUHXSMbAK_PQK2AsVDRJBZx7VUEocN0vNJL3cUr_tBVJYL_uwac2K4f9r1K1F-VKG6uc_N0nU0exIloFnkgo0hryoNWvzNu8B1E1TUPdk24TmWXexANnfcyLjLHbQnXDJkFsWjU9FWeYVvhEV9IJ-1K03stWHQ/p.jpeg",
                 ctaText: "Plan Your Safari",
                 ctaLink: "/inquire"
             }, void 0, false, {
@@ -155,7 +155,7 @@ function SafarisPage() {
                                                         }, this),
                                                         " ",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-[#1f751f]",
+                                                            className: "text-primary",
                                                             children: "Safaris"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safaris/page.tsx",
@@ -167,14 +167,6 @@ function SafarisPage() {
                                                     fileName: "[project]/app/safaris/page.tsx",
                                                     lineNumber: 43,
                                                     columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "font-['Great_Vibes',_cursive] text-[40px] text-[#c97500] -mt-4 opacity-70",
-                                                    children: "The Big Five & Beyond."
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/safaris/page.tsx",
-                                                    lineNumber: 46,
-                                                    columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
@@ -184,24 +176,14 @@ function SafarisPage() {
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "font-quattro text-[18px] text-[#444] leading-[1.8] space-y-6",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    children: "Explore the Serengeti, Ngorongoro Crater, and Tarangire National Park to witness the Big Five and the Great Migration. Our classic wildlife safaris are designed to bring you face-to-face with nature's most magnificent creatures."
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/safaris/page.tsx",
-                                                    lineNumber: 50,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "pt-4 border-l-2 border-[#1f751f] pl-6 italic text-[#666]",
-                                                    children: '"Witness millions of wildebeest, zebras, and gazelles on their annual journey across the vast plains."'
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/safaris/page.tsx",
-                                                    lineNumber: 53,
-                                                    columnNumber: 17
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                children: "Explore the Serengeti, Ngorongoro Crater, and Tarangire National Park to witness the Big Five and the Great Migration. Our classic wildlife safaris are designed to bring you face-to-face with nature's most magnificent creatures."
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/safaris/page.tsx",
+                                                lineNumber: 50,
+                                                columnNumber: 17
+                                            }, this)
+                                        }, void 0, false, {
                                             fileName: "[project]/app/safaris/page.tsx",
                                             lineNumber: 49,
                                             columnNumber: 15
@@ -307,7 +289,7 @@ function SafarisPage() {
                                                         }, this),
                                                         " ",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-[#c97500]",
+                                                            className: "text-primary",
                                                             children: "Safaris"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safaris/page.tsx",
@@ -353,7 +335,7 @@ function SafarisPage() {
                                             className: "pt-6",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                                 href: "/safaris/photography",
-                                                className: "inline-block border-b-2 border-[#c97500] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#c97500] transition-colors",
+                                                className: "inline-block border-b-2 border-secondary pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#c97500] transition-colors",
                                                 children: "View Gallery —"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/safaris/page.tsx",
@@ -404,7 +386,7 @@ function SafarisPage() {
                                                         }, this),
                                                         " ",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-[#1f751f]",
+                                                            className: "text-primary",
                                                             children: "Safaris"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/safaris/page.tsx",
@@ -441,7 +423,7 @@ function SafarisPage() {
                                             className: "pt-6",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                                 href: "/safaris/luxury",
-                                                className: "inline-block border-b-2 border-[#1f751f] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors",
+                                                className: "inline-block border-b-2 border-primary pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors",
                                                 children: "Discover Luxury —"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/safaris/page.tsx",
@@ -466,7 +448,7 @@ function SafarisPage() {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             alt: "Luxury Safari",
                                             className: "w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110",
-                                            src: "https://images.unsplash.com/photo-1515914560649-8fe5d631aa62?q=80&w=1200&auto=format&fit=crop"
+                                            src: "https://uc4b8c4c4967484423e691eef891.previews.dropboxusercontent.com/p/thumb/AC_XwJhs-HiRqH_8CX2VamBlk6EMDcW3kpUMzgiIegfL0YcAbNTSpZ8WVzKzGTaBkJA7cnlrCqqrWpLjYCmF2Jmcl6Tq0m6rZo8jaFIVR58UdUMp41nc_fJ7sxM0C8J3-wU0VWt9J46DyNVhhTDfMpfscphfRxkjTdujnxWFgVsYAD1IJSk0KHHBC8CYDZPIaqrsHoYshkxKrmYesNVST67rDS2ehDEWqyLLSqHhoUUOsJOr53YQE7QH8zWbQ6Dm5mwOfkirezfVII9rE0jd4ok120yUhorWOV6YN3llupNQbNpzJKNexg2DQr2HaZEb-bQU7Teo5ukDjmoeL07ceE8WUHUV1wQQTeTLdlrdBiCKHw/p.jpeg"
                                         }, void 0, false, {
                                             fileName: "[project]/app/safaris/page.tsx",
                                             lineNumber: 138,

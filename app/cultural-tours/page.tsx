@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { HeroSection } from '@/components/HeroSection'
 import { Coffee, Wine, Mountain, Users, MapPin, Camera } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -12,13 +11,35 @@ export default function CulturalToursPage() {
   return (
     <div className="w-full bg-white">
       {/* Hero Section */}
-      <HeroSection 
-        title="Cultural Tours"
-        description="Beyond sightseeing—immerse yourself in a world of culture, connection, and discovery as we introduce you to the heart of Tanzania through its people."
-        image="/assets/8c94629a5a5ad4d6d93a9cbc25691273b88a5856.png"
-        ctaText="Book Your Experience"
-        ctaLink="/contact"
-      />
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/assets/8c94629a5a5ad4d6d93a9cbc25691273b88a5856.png)' }}
+        />
+        
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+
+        <div className="relative z-10 text-center text-white px-4 max-w-[900px]">
+          <div className="flex items-center justify-center gap-3 mb-6 text-[12px] tracking-[4px] uppercase">
+            <Link href="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+            <span className="text-white/30">/</span>
+            <span className="text-[#c97500]">Cultural Tours</span>
+          </div>
+
+          <h1 className="font-serif text-[42px] sm:text-[60px] md:text-[75px] leading-[1.05] mb-6">
+            Cultural <span className="italic text-[#c97500]">Tours</span>
+          </h1>
+
+          <p className="font-quattro text-[18px] sm:text-[20px] text-white/70 leading-relaxed max-w-[700px] mx-auto">
+            Beyond sightseeing—immerse yourself in a world of culture, connection, and discovery as we introduce you to the heart of Tanzania through its people.
+          </p>
+        </div>
+
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+          <span className="text-white/40 text-[10px] uppercase tracking-[4px]">Discover</span>
+          <div className="w-[1px] h-14 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+        </div>
+      </section>
 
       {/* Intro Quote Section */}
       <section className="py-24 px-6 text-center bg-[#fdfcfb]">

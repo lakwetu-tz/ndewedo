@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { ImageWithFallback } from '@/components/figma/ImageWithFallback'
 import {
   Clock, Users, MapPin, Calendar, Check, Star, X,
   ChevronRight, Mail, Phone, Download, Share2,
-  Camera, Shield, Utensils, Heart, Info, ArrowRight
+  Camera, Shield, Utensils, Heart, Info, ArrowRight,
+  Compass, Sun, Mountain, Palette
 } from 'lucide-react'
 import PackageSubNav from '@/components/PackageSubNav'
 import ItineraryAccordion from '@/components/ItineraryAccordion'
@@ -82,67 +84,183 @@ const itinerary = [
 
 export default function EastAfricaPackagePage() {
   const [isBookingOpen, setBookingOpen] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  
   const packageName = "16-Day Private Safari East Africa: Wildlife & Coastal";
   const packagePrice = "$8,450";
   const duration = "16 Days / 15 Nights";
+  const rating = 5.0;
+  const reviewCount = 78;
+
+  const highlights = [
+    { icon: Compass, label: 'Countries', value: '2' },
+    { icon: Mountain, label: 'Parks', value: '6' },
+    { icon: Palette, label: 'Experience', value: 'Private' },
+    { icon: Sun, label: 'Best Time', value: 'Jun-Oct' },
+  ];
 
   return (
     <div className="w-full bg-white">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <ImageWithFallback
-          src={packageGallery[0]}
-          alt={packageName}
-  
-          className="object-cover"
-  
-        />
-        <div className="absolute inset-0 bg-black/40" />
+      <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        <motion.div 
+          style={{ y: heroY }}
+          className="absolute inset-0"
+        >
+          <ImageWithFallback
+            src={packageGallery[0]}
+            alt={packageName}
+            className="object-cover w-full h-[110%] -mt-[5%]"
+          />
+        </motion.div>
+        
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
 
-        <div className="relative z-10 text-center text-white px-4 max-w-[1000px]">
-          <span className="font-['Poppins'] text-[13px] tracking-[6px] text-white/80 uppercase block mb-6 animate-fadeIn">The Grand Expedition</span>
-          <h1 className="font-serif text-[40px] sm:text-[60px] md:text-[80px] leading-tight mb-8 drop-shadow-lg">
-            {packageName.split(' ')[0]} <br/>
-            <span className="italic text-[#c97500]">{packageName.split(' ').slice(1).join(' ')}</span>
-          </h1>
-          <div className="flex flex-wrap justify-center items-center gap-8 text-[14px] tracking-[2px] uppercase font-['Poppins']">
-            <div className="flex items-center gap-2">
-              <Clock size={18} className="text-[#c97500]" />
-              <span>{duration}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin size={18} className="text-[#c97500]" />
-              <span>Multi-Country</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star size={18} className="text-[#fbbf24] fill-current" />
-              <span>5.0 Excellence</span>
-            </div>
-          </div>
-        </div>
+        <motion.div 
+          style={{ opacity: heroOpacity }}
+          className="relative z-10 text-center text-white px-4 max-w-[1000px]"
+        >
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center justify-center gap-3 mb-6 text-[12px] tracking-[4px] uppercase"
+          >
+            <Link href="/safaris" className="text-white/60 hover:text-white transition-colors">Safaris</Link>
+            <span className="text-white/30">/</span>
+            <Link href="/safaris/wildlife" className="text-white/60 hover:text-white transition-colors">Wildlife</Link>
+            <span className="text-white/30">/</span>
+            <span className="text-[#c97500]">East Africa</span>
+          </motion.div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <span className="text-white/60 text-[10px] uppercase tracking-[4px]">Venture</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-white/60 to-transparent" />
-        </div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="font-serif text-[42px] sm:text-[60px] md:text-[75px] lg:text-[85px] leading-[1.05] mb-8"
+          >
+            <span className="block">{packageName.split(' ').slice(0, 3).join(' ')}</span>
+            <span className="italic text-[#c97500] block">{packageName.split(' ').slice(3).join(' ')}</span>
+          </motion.h1>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="flex flex-wrap justify-center gap-8 mb-10"
+          >
+            {highlights.map((item, i) => (
+              <div key={i} className="flex items-center gap-2 text-left">
+                <item.icon size={18} className="text-[#c97500]" />
+                <div>
+                  <div className="text-[11px] tracking-[2px] text-white/50 uppercase">{item.label}</div>
+                  <div className="text-[14px] font-medium">{item.value}</div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex flex-wrap items-center justify-center gap-6"
+          >
+            <button 
+              onClick={() => setBookingOpen(true)}
+              className="bg-[#c97500] hover:bg-[#e08500] text-white px-10 py-4 rounded-[2px] font-['Poppins'] text-[13px] tracking-[3px] uppercase transition-colors shadow-xl"
+            >
+              Begin Your Journey
+            </button>
+            <div className="flex items-center gap-2">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} className={i < Math.floor(rating) ? "text-amber-400 fill-current" : "text-white/30"} />
+                ))}
+              </div>
+              <span className="text-[14px]">{rating}</span>
+              <span className="text-white/50 text-[12px]">({reviewCount} reviews)</span>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        >
+          <span className="text-white/40 text-[10px] uppercase tracking-[4px]">Scroll to Explore</span>
+          <div className="w-[1px] h-14 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+        </motion.div>
       </section>
 
       {/* Intro Editorial Section */}
-      <section className="py-24 px-6 bg-[#fdfcfb]">
-        <div className="max-w-[1000px] mx-auto text-center">
-          <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#c97500] uppercase block mb-8">THE ODYSSEY</span>
-          <h2 className="font-serif text-[32px] md:text-[48px] text-[#222] leading-tight mb-12">
-            A cross-continental narrative of <span className="italic">wilderness, culture, and coast.</span>
-          </h2>
-          <div className="grid md:grid-cols-2 gap-12 text-left font-quattro text-[18px] text-[#444] leading-[1.8]">
-            <p>
+      <section className="relative py-32 px-6 bg-[#0f440f] overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#c97500]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
+        
+        <div className="relative max-w-[1000px] mx-auto text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="font-['Poppins'] text-[12px] tracking-[4px] text-[#c97500] uppercase block mb-8">THE ODYSSEY</span>
+            <h2 className="font-serif text-[32px] md:text-[48px] text-white leading-tight mb-8">
+              A cross-continental narrative of <span className="italic text-[#c97500]">wilderness, culture, and coast.</span>
+            </h2>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 gap-12 text-left font-quattro text-[17px] text-white/70 leading-[1.8]">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
               A fully private 16-day adventure across Kenya and Tanzania's premier parks. Witness the Maasai Mara, Serengeti, and Ngorongoro, featuring hot air balloon safaris and deep cultural engagements.
-            </p>
-            <p>
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               Boutique lodges, scenic drives through the Great Rift Valley, and seamless private guiding ensure an immersive, personalized escape culminating in a 3-night Zanzibar beach retreat.
-            </p>
+            </motion.p>
           </div>
-          <div className="h-[1px] w-20 bg-[#1f751f] mx-auto mt-16" />
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-8 mt-12"
+          >
+            {[
+              { value: '2', label: 'Countries' },
+              { value: '15', label: 'Nights' },
+              { value: '6', label: 'Parks' },
+              { value: '3', label: 'Meals Daily' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="font-serif text-[36px] text-[#c97500]">{stat.value}</div>
+                <div className="text-[12px] tracking-[2px] text-white/50 uppercase">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+          
+          <div className="h-[1px] w-20 bg-[#c97500]/50 mx-auto mt-16" />
         </div>
       </section>
 

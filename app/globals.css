@@ -11,9 +11,9 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #0f440f; /* Using the green primary color */
+  --primary: #1f751f; /* Using the green primary color */
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary: #c97500;
   --secondary-foreground: #030213;
   --muted: #ececf0;
   --muted-foreground: #717182;
@@ -124,15 +124,8 @@
 /* Correctly structured base layer */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
     border-color: var(--border);
     outline-color: var(--ring);
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    * {
-      outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
-    }
   }
 
   *, :after, :before, ::backdrop {
@@ -258,11 +251,6 @@
   ::placeholder {
     opacity: 1;
     color: currentColor;
-  }
-  @supports (color: color-mix(in lab, red, red)) {
-    ::placeholder {
-      color: color-mix(in oklab, currentColor 50%, transparent);
-    }
   }
 
   textarea { resize: vertical; }

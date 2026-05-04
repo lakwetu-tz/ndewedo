@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo } from 'react';
-import { X, Check, Loader2 } from 'lucide-react';
-import { toast } from 'sonner';
+import { useState, useMemo } from "react";
+import { X, Check, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -13,34 +14,36 @@ interface BookingModalProps {
   } | null;
 }
 
-export default function BookingModal({ isOpen, onClose, safariPackage }: BookingModalProps) {
+export default function BookingModal({
+  isOpen,
+  onClose,
+  safariPackage,
+}: BookingModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    language: '',
-    country: '',
-    paymentMode: '',
-    travelDate: '',
+    fullName: "",
+    email: "",
+    language: "",
+    country: "",
+    paymentMode: "",
+    travelDate: "",
     partners: 1,
-    children: 0
+    children: 0,
   });
 
-  // Calculate total price based on number of people
   const totalPrice = useMemo(() => {
-    if (!safariPackage) return '$0';
-    
-    // Extract numeric value from amount string (e.g., "$2,450" -> 2450)
-    const basePrice = parseInt(safariPackage.amount.replace(/[^0-9]/g, '')) || 0;
+    if (!safariPackage) return "$0";
+
+    const basePrice =
+      parseInt(safariPackage.amount.replace(/[^0-9]/g, "")) || 0;
     const totalPeople = (formData.partners || 0) + (formData.children || 0);
-    
+
     const calculatedTotal = basePrice * (totalPeople || 1);
-    
-    // Format back to currency string
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
+
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
     }).format(calculatedTotal);
   }, [safariPackage, formData.partners, formData.children]);
 
@@ -48,24 +51,28 @@ export default function BookingModal({ isOpen, onClose, safariPackage }: Booking
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.fullName || !formData.email || !formData.language || !formData.country || !formData.paymentMode) {
-      toast.error('Please fill in all required fields.');
+
+    if (
+      !formData.fullName ||
+      !formData.email ||
+      !formData.language ||
+      !formData.country ||
+      !formData.paymentMode
+    ) {
+      toast.error("Please fill in all required fields.");
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://gilleadsafaris.com/backend/booking.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch("https://gilleadsafaris.com/backend/booking.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
           packageName: safariPackage.name,
-          packageAmount: totalPrice // Send the updated total amount
+          packageAmount: totalPrice,
         }),
       });
 
@@ -74,174 +81,277 @@ export default function BookingModal({ isOpen, onClose, safariPackage }: Booking
       if (data.success) {
         toast.success(data.message || `Booking for ${safariPackage.name} successful!`);
         onClose();
-        // Reset form
         setFormData({
-          fullName: '',
-          email: '',
-          language: '',
-          country: '',
-          paymentMode: '',
-          travelDate: '',
+          fullName: "",
+          email: "",
+          language: "",
+          country: "",
+          paymentMode: "",
+          travelDate: "",
           partners: 1,
-          children: 0
+          children: 0,
         });
       } else {
-        toast.error(data.message || 'Failed to submit booking. Please try again.');
+        toast.error(data.message || "Failed to submit booking. Please try again.");
       }
     } catch (error) {
-      console.error('Booking error:', error);
-      toast.error('Connection error. Please check your internet and try again.');
+      console.error("Booking error:", error);
+      toast.error("Connection error. Please check your internet and try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const inputClasses =
+    "w-full px-4 py-3 border border-white/20 rounded-lg focus:outline-none focus:border-[#c97500] disabled:bg-white/5 bg-white/5 text-white placeholder-white/50";
+  const labelClasses = "block text-[15px] text-white/90 mb-2";
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60" onClick={onClose}>
-      <div
-        className="bg-white rounded-[20px] max-w-[600px] w-full max-h-[90vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+        onClick={onClose}
       >
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between rounded-t-[20px] z-10">
-          <div>
-            <h2 className="text-[24px] text-[#333333]">Book Your Safari</h2>
-            <p className="text-[14px] text-[#686868] mt-1">{safariPackage.name}</p>
-          </div>
-          <button onClick={onClose} className="text-[#686868] hover:text-[#333333] transition-colors" aria-label="Close">
-            <X size={24} />
-          </button>
-        </div>
-
-        {/* Pricing Banner */}
-        <div className="bg-[#1f751f]/5 px-6 py-4 border-b border-[#1f751f]/10 flex justify-between items-center">
-            <div className="text-[14px] text-[#686868]">Total Price (Estimated)</div>
-            <div className="text-[24px] font-bold text-[#1f751f]">{totalPrice}</div>
-        </div>
-
-        <form onSubmit={handleSubmit} className="px-6 py-6 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.95, opacity: 0 }}
+          className="bg-[#0f440f] rounded-[20px] max-w-[600px] w-full max-h-[90vh] overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="sticky top-0 bg-[#0f440f] border-b border-white/10 px-6 py-4 flex items-center justify-between rounded-t-[20px] z-10">
             <div>
-              <label className="block text-[15px] text-[#333333] mb-2">Full Name *</label>
-              <input 
-                type="text" 
-                required 
-                disabled={isSubmitting}
-                value={formData.fullName} 
-                onChange={(e) => setFormData({...formData, fullName: e.target.value})} 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50" 
-              />
+              <h2 className="text-[24px] text-white font-serif">Book Your Safari</h2>
+              <p className="text-[14px] text-white/70 mt-1">{safariPackage.name}</p>
             </div>
-            <div>
-              <label className="block text-[15px] text-[#333333] mb-2">Email *</label>
-              <input 
-                type="email" 
-                required 
-                disabled={isSubmitting}
-                value={formData.email} 
-                onChange={(e) => setFormData({...formData, email: e.target.value})} 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50" 
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-[15px] text-[#333333] mb-2">Language *</label>
-              <input 
-                type="text" 
-                required 
-                disabled={isSubmitting}
-                value={formData.language} 
-                onChange={(e) => setFormData({...formData, language: e.target.value})} 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50" 
-              />
-            </div>
-            <div>
-              <label className="block text-[15px] text-[#333333] mb-2">Country *</label>
-              <input 
-                type="text" 
-                required 
-                disabled={isSubmitting}
-                value={formData.country} 
-                onChange={(e) => setFormData({...formData, country: e.target.value})} 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50" 
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-[15px] text-[#333333] mb-2">Mode of Payment *</label>
-            <select 
-              required 
-              disabled={isSubmitting}
-              value={formData.paymentMode} 
-              onChange={(e) => setFormData({...formData, paymentMode: e.target.value})} 
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50 bg-white"
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={onClose}
+              className="text-white/70 hover:text-white transition-colors"
+              aria-label="Close"
             >
-              <option value="">Select Payment Mode</option>
-              <option value="Credit Card">Credit Card</option>
-              <option value="PayPal">PayPal</option>
-              <option value="Bank Transfer">Bank Transfer</option>
-            </select>
+              <X size={24} />
+            </motion.button>
           </div>
 
-          <div>
-            <label className="block text-[15px] text-[#333333] mb-2">Travel Date</label>
-            <input 
-              type="date" 
-              disabled={isSubmitting}
-              value={formData.travelDate} 
-              onChange={(e) => setFormData({...formData, travelDate: e.target.value})} 
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50" 
-            />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="bg-[#c97500]/20 px-6 py-4 border-b border-[#c97500]/30 flex justify-between items-center"
+          >
+            <div className="text-[14px] text-white/70">Total Price (Estimated)</div>
+            <div className="text-[28px] font-bold text-[#c97500]">{totalPrice}</div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-[15px] text-[#333333] mb-2">Number of Adults</label>
-              <input 
-                type="number" 
-                min="1" 
-                disabled={isSubmitting}
-                value={formData.partners} 
-                onChange={(e) => setFormData({...formData, partners: parseInt(e.target.value) || 1})} 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50" 
-              />
+          <form onSubmit={handleSubmit} className="px-6 py-6 space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 }}
+              >
+                <label className={labelClasses}>
+                  Full Name <span className="text-[#c97500]">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  disabled={isSubmitting}
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
+                  className={inputClasses}
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <label className={labelClasses}>
+                  Email <span className="text-[#c97500]">*</span>
+                </label>
+                <input
+                  type="email"
+                  required
+                  disabled={isSubmitting}
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className={inputClasses}
+                />
+              </motion.div>
             </div>
-            <div>
-              <label className="block text-[15px] text-[#333333] mb-2">Children</label>
-              <input 
-                type="number" 
-                min="0" 
-                disabled={isSubmitting}
-                value={formData.children} 
-                onChange={(e) => setFormData({...formData, children: parseInt(e.target.value) || 0})} 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50" 
-              />
-            </div>
-          </div>
 
-          <div className="flex items-center justify-end mt-6 pt-6 border-t border-gray-200">
-            <button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="flex items-center gap-2 px-8 py-3 rounded-[50px] bg-[#1f751f] text-white hover:bg-[#0f440f] transition-all disabled:opacity-70 disabled:cursor-not-allowed min-w-[200px] justify-center"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+              >
+                <label className={labelClasses}>
+                  Language <span className="text-[#c97500]">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  disabled={isSubmitting}
+                  value={formData.language}
+                  onChange={(e) =>
+                    setFormData({ ...formData, language: e.target.value })
+                  }
+                  className={inputClasses}
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <label className={labelClasses}>
+                  Country <span className="text-[#c97500]">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  disabled={isSubmitting}
+                  value={formData.country}
+                  onChange={(e) =>
+                    setFormData({ ...formData, country: e.target.value })
+                  }
+                  className={inputClasses}
+                />
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
             >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="animate-spin" size={20} />
-                  Booking...
-                </>
-              ) : (
-                <>
-                  <Check size={20} />
-                  Confirm Booking ({totalPrice})
-                </>
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+              <label className={labelClasses}>
+                Mode of Payment <span className="text-[#c97500]">*</span>
+              </label>
+              <select
+                required
+                disabled={isSubmitting}
+                value={formData.paymentMode}
+                onChange={(e) =>
+                  setFormData({ ...formData, paymentMode: e.target.value })
+                }
+                className={`${inputClasses} bg-white/10`}
+              >
+                <option value="" className="text-black">
+                  Select Payment Mode
+                </option>
+                <option value="Credit Card" className="text-black">
+                  Credit Card
+                </option>
+                <option value="PayPal" className="text-black">
+                  PayPal
+                </option>
+                <option value="Bank Transfer" className="text-black">
+                  Bank Transfer
+                </option>
+              </select>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <label className={labelClasses}>Travel Date</label>
+              <input
+                type="date"
+                disabled={isSubmitting}
+                value={formData.travelDate}
+                onChange={(e) =>
+                  setFormData({ ...formData, travelDate: e.target.value })
+                }
+                className={inputClasses}
+              />
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+              >
+                <label className={labelClasses}>Number of Adults</label>
+                <input
+                  type="number"
+                  min="1"
+                  disabled={isSubmitting}
+                  value={formData.partners}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      partners: parseInt(e.target.value) || 1,
+                    })
+                  }
+                  className={inputClasses}
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <label className={labelClasses}>Children</label>
+                <input
+                  type="number"
+                  min="0"
+                  disabled={isSubmitting}
+                  value={formData.children}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      children: parseInt(e.target.value) || 0,
+                    })
+                  }
+                  className={inputClasses}
+                />
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.55 }}
+              className="flex items-center justify-end mt-6 pt-6 border-t border-white/10"
+            >
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-2 px-8 py-3 rounded-full bg-[#c97500] text-white hover:bg-[#b36800] transition-all disabled:opacity-70 disabled:cursor-not-allowed min-w-[220px] justify-center font-semibold"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="animate-spin" size={20} />
+                    Booking...
+                  </>
+                ) : (
+                  <>
+                    <Check size={20} />
+                    Confirm Booking ({totalPrice})
+                  </>
+                )}
+              </motion.button>
+            </motion.div>
+          </form>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }

@@ -1,11 +1,11 @@
 :HL["/_next/static/chunks/85b08b2af7edf718.css","style"]
-:HL["/_next/static/chunks/18b81c4283a15d1e.css","style"]
+:HL["/_next/static/chunks/bbb3f71fc47dc48e.css","style"]
 :HL["/_next/static/media/47fe1b7cd6e6ed85-s.p.855a563b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/8e6fa89aa22d24ec-s.p.3aec397d.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/a218039a3287bcfd-s.p.4a23d71b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/e2334d715941921e-s.p.d82a9aff.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["https://images.unsplash.com/photo-1556960146-ba4d5f5fa2f9?q=80&w=1200&auto=format&fit=crop","image"]
 :HL["https://images.unsplash.com/photo-1519659528534-7fd733a832a0?q=80&w=1200&auto=format&fit=crop","image"]
-:HL["https://images.unsplash.com/photo-1515914560649-8fe5d631aa62?q=80&w=1200&auto=format&fit=crop","image"]
+:HL["https://uc4b8c4c4967484423e691eef891.previews.dropboxusercontent.com/p/thumb/AC_XwJhs-HiRqH_8CX2VamBlk6EMDcW3kpUMzgiIegfL0YcAbNTSpZ8WVzKzGTaBkJA7cnlrCqqrWpLjYCmF2Jmcl6Tq0m6rZo8jaFIVR58UdUMp41nc_fJ7sxM0C8J3-wU0VWt9J46DyNVhhTDfMpfscphfRxkjTdujnxWFgVsYAD1IJSk0KHHBC8CYDZPIaqrsHoYshkxKrmYesNVST67rDS2ehDEWqyLLSqHhoUUOsJOr53YQE7QH8zWbQ6Dm5mwOfkirezfVII9rE0jd4ok120yUhorWOV6YN3llupNQbNpzJKNexg2DQr2HaZEb-bQU7Teo5ukDjmoeL07ceE8WUHUV1wQQTeTLdlrdBiCKHw/p.jpeg","image"]
 :HL["https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?q=80&w=1471&auto=format&fit=crop","image"]
-0:{"buildId":"jYkvIis-bIr8iMR37p9VS","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"safaris","paramType":null,"paramKey":"safaris","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"Bgsvi1g3a4UkfCziLl5n6","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"safaris","paramType":null,"paramKey":"safaris","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

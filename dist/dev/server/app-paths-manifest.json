@@ -1,8 +1,12 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
-  "/cultural-tours/page": "app/cultural-tours/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/inquire/page": "app/inquire/page.js",
   "/page": "app/page.js",
   "/safaris/packages/northern-circuit-9-day/page": "app/safaris/packages/northern-circuit-9-day/page.js",
-  "/safaris/wildlife/page": "app/safaris/wildlife/page.js"
+  "/safaris/page": "app/safaris/page.js",
+  "/safaris/wildlife/page": "app/safaris/wildlife/page.js",
+  "/trekking/page": "app/trekking/page.js",
+  "/volunteer/page": "app/volunteer/page.js"
 }

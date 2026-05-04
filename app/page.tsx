@@ -117,11 +117,11 @@ export default function HomePage() {
         </div>
       </section>
 
-        {/* WELCOME TO OUR WORLD SECTION */}
-       
-              
-              {/* LEFT COLUMN: Text + Cabin image (exact stacked layout) */}
-              {/* <div className="lg:col-span-5">
+      {/* WELCOME TO OUR WORLD SECTION */}
+
+
+      {/* LEFT COLUMN: Text + Cabin image (exact stacked layout) */}
+      {/* <div className="lg:col-span-5">
                 <h2 className="text-[28px] sm:text-[45px] font-bold font-serif text-primary mb-6 text-start px-4">
                   Welcome to<br />Ndewedo Tour & Adventure 
                 </h2>
@@ -130,8 +130,8 @@ export default function HomePage() {
                   Discover the unique atmosphere of our private residential club communities. Once experienced, never forgotten. This is where comfortable, modern living in nature&apos;s most spectacular international settings. Seamlessly exclusive. Community welcoming. Find your unique world - a place where families love to be, creating unforgettable moments, together.
                 </div> */}
 
-                {/* Cabin image - exact position and size below text */}
-                {/* <div className="mt-12 lg:mt-16 rounded-lg  overflow-hidden shadow-2xl">
+      {/* Cabin image - exact position and size below text */}
+      {/* <div className="mt-12 lg:mt-16 rounded-lg  overflow-hidden shadow-2xl">
                   <img 
                     src="https://picsum.photos/id/1016/700/460" 
                     alt="Man relaxing by fire pit outside luxury cabin at dusk"
@@ -140,24 +140,24 @@ export default function HomePage() {
                 </div>
               </div> */}
 
-              {/* RIGHT COLUMN: Turquoise kayak image with mountain silhouette overlay */}
-              {/* <div className="lg:col-span-7 relative"> */}
-                {/* Main kayak image - tall and exact proportions */}
-                {/* <img 
+      {/* RIGHT COLUMN: Turquoise kayak image with mountain silhouette overlay */}
+      {/* <div className="lg:col-span-7 relative"> */}
+      {/* Main kayak image - tall and exact proportions */}
+      {/* <img 
                   src="https://picsum.photos/id/1005/900/1100" 
                   alt="Yellow kayak and people in crystal turquoise ocean"
                   className="w-full lg:h-[640px] object-cover rounded-[4px] "
                 /> */}
 
-                {/* Mountain silhouette overlay - exact jagged decorative element on left side of image */}
-                {/* <svg 
+      {/* Mountain silhouette overlay - exact jagged decorative element on left side of image */}
+      {/* <svg 
                   className="absolute -left-6 lg:-left-12 top-12 lg:top-20 w-52 lg:w-72 h-96 text-stone-300 z-10 drop-shadow-md"
                   viewBox="0 0 600 600"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 > */}
-                  {/* Multiple mountain peaks to match the design */}
-                  {/* <path d="M0 600 L120 320 L250 480 L380 210 L520 390 L600 280 L600 600 Z" />
+      {/* Multiple mountain peaks to match the design */}
+      {/* <path d="M0 600 L120 320 L250 480 L380 210 L520 390 L600 280 L600 600 Z" />
                   <path d="M80 600 L200 280 L320 420 L450 180 L580 350 L600 600 Z" opacity="0.85" />
                   <path d="M150 600 L270 250 L400 380 L500 160 L600 320 L600 600 Z" opacity="0.7" />
                 </svg>
@@ -261,17 +261,18 @@ export default function HomePage() {
           {/* Centered Decorative Line */}
           {/* <div className="w-42 h-[2px] bg-[#222] mb-10" /> */}
         </div>
-
-        {experiences.map((exp, index) => (
-          <ExperienceSection key={index} exp={exp} index={index} />
-        ))}
-      </div>
+  
+            {experiences.map((exp, index) => (
+              <ExperienceSection key={index} exp={exp} index={index} />
+            ))}
+          </div>
+  
 
       {/* Blog/Stories Section - Travel Journal */}
-      <section className="py-32 px-4 bg-[#fcfcfc] border-t border-gray-100">
+      <section className="py-32 px-4 border-t border-gray-100">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>              
+            <div>
               <h2 className="text-[32px] sm:text-[45px] font-serif font-bold text-[#222]">Stories from <span className="text-[#1f751f]">The Wild</span></h2>
               <Link href="/blog" className="text-[#222] border-b-2 border-[#1f751f] pb-1 font-bold text-[13px] uppercase tracking-[2px] hover:text-[#1f751f] transition-all">View All Stories</Link>
             </div>

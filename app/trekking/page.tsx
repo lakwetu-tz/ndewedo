@@ -80,7 +80,7 @@ export default function TrekkingPage() {
                 </div>
 
                 <div className="pt-6">
-                  <Link href="/contact" className="inline-block border-b-2 border-[#1f751f] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors">
+                  <Link href="/contact?interest=Kilimanjaro Trekking" className="inline-block border-b-2 border-[#1f751f] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors">
                     Plan This Route —
                   </Link>
                 </div>

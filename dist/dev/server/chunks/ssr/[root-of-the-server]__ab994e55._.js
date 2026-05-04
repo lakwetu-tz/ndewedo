@@ -75,7 +75,7 @@ function AboutPage() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$HeroSection$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["HeroSection"], {
                 title: "About Ndewedo Tours & Adventures",
                 description: "Your trusted partner for authentic Tanzanian adventures and cultural experiences",
-                image: "https://ndewedotours.com/wp-content/uploads/2025/02/pexels-balazsimon-15994191-scaled.jpg",
+                image: "https://uc0f72831654c4a3f59e69ed6d58.previews.dropboxusercontent.com/p/thumb/AC9zBm8jFfYxMDLvIZUbLEIHxAh0JeaNWqlxWUy6D82DbisSmwYjVAJuYoTSFi1mPcUc3auuc2MiRQl47HswPJBI1E34yPSnbKmaCFGaE9mgGzy4_y78KQY84UWUBOwrl65c2rB2tqICanScklH4M13vtdO0l32dnNLGu_5c2as0ztFTxu-Jcj33N7QWbnbhf0vNoQUWcRmzO4iSfAbr4lFnbyEG7rm1r35CTLSNHpNRl8ULUii3SWlLSiZn5LJu0M7EZlSwfuYB1gUr4pjq6n9Du-cmhN4dMi5H8_2Sh7NekxzVzW71pALkYYpNHRtIWOaHI9Pn5JvCm1qMg02So4Hqczg3DrAIBlN7c8YViO399Q/p.jpeg",
                 ctaText: "Contact Us",
                 ctaLink: "/contact"
             }, void 0, false, {

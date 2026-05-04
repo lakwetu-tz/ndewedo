@@ -13,9 +13,9 @@ export default function SafarisPage() {
     <div className="w-full bg-white">
       {/* Hero Section */}
       <HeroSection 
-        title="Tanzania Safari Adventures"
+        title="Safari Tour & Adventures"
         description="Witness Africa's incredible wildlife in their natural habitat across Tanzania's world-famous national parks."
-        image="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2068&auto=format&fit=crop"
+        image="https://ucc5ff552e3d45cbda421095a864.previews.dropboxusercontent.com/p/thumb/AC9jxSIWW7qaBoJY9jR9o5-aVYAwKNqTMu40X2IOrbHksTeo2Bp8Cb4AaGU06HAFnd7E0hAxWbz4sfV1Uv16LPqDPsp9dgyGp0DIn6-vy0h77fGkF1OymvYKM1r5OwVWQCtjNDQDY1dLw-gc-lz4skeSqC_BoYXT84RfAfTejYzwycWe86Ydg1pYfPX-NS6MZPEBPGnvl_r7qtiUQUHXSMbAK_PQK2AsVDRJBZx7VUEocN0vNJL3cUr_tBVJYL_uwac2K4f9r1K1F-VKG6uc_N0nU0exIloFnkgo0hryoNWvzNu8B1E1TUPdk24TmWXexANnfcyLjLHbQnXDJkFsWjU9FWeYVvhEV9IJ-1K03stWHQ/p.jpeg"
         ctaText="Plan Your Safari"
         ctaLink="/inquire"
       />
@@ -41,18 +41,18 @@ export default function SafarisPage() {
               <div>
                 <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#888] uppercase block mb-4">THE CLASSIC</span>
                 <h2 className="font-serif text-[48px] md:text-[60px] text-[#222] leading-tight mb-4">
-                  Wildlife <br/> <span className="text-[#1f751f]">Safaris</span>
+                  Wildlife <br/> <span className="text-primary">Safaris</span>
                 </h2>
-                <p className="font-['Great_Vibes',_cursive] text-[40px] text-[#c97500] -mt-4 opacity-70">The Big Five & Beyond.</p>
+                {/* <p className="font-['Great_Vibes',_cursive] text-[40px] text-[#c97500] -mt-4 opacity-70">The Big Five & Beyond.</p> */}
               </div>
 
               <div className="font-quattro text-[18px] text-[#444] leading-[1.8] space-y-6">
                 <p>
                   Explore the Serengeti, Ngorongoro Crater, and Tarangire National Park to witness the Big Five and the Great Migration. Our classic wildlife safaris are designed to bring you face-to-face with nature's most magnificent creatures.
                 </p>
-                <div className="pt-4 border-l-2 border-[#1f751f] pl-6 italic text-[#666]">
+                {/* <div className="pt-4 border-l-2 border-[#1f751f] pl-6 italic text-[#666]">
                    "Witness millions of wildebeest, zebras, and gazelles on their annual journey across the vast plains."
-                </div>
+                </div> */}
               </div>
 
               <div className="pt-6">
@@ -89,7 +89,7 @@ export default function SafarisPage() {
               <div>
                 <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#888] uppercase block mb-4">THE LENS</span>
                 <h2 className="font-serif text-[48px] md:text-[60px] text-[#222] leading-tight mb-4">
-                  Photography <br/> <span className="text-[#c97500]">Safaris</span>
+                  Photography <br/> <span className="text-primary">Safaris</span>
                 </h2>
               </div>
 
@@ -103,7 +103,7 @@ export default function SafarisPage() {
               </div>
 
               <div className="pt-6">
-                <Link href="/safaris/photography" className="inline-block border-b-2 border-[#c97500] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#c97500] transition-colors">
+                <Link href="/safaris/photography" className="inline-block border-b-2 border-secondary pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#c97500] transition-colors">
                   View Gallery —
                 </Link>
               </div>
@@ -116,7 +116,7 @@ export default function SafarisPage() {
               <div>
                 <span className="font-['Poppins'] text-[13px] tracking-[4px] text-[#888] uppercase block mb-4">THE ELEGANCE</span>
                 <h2 className="font-serif text-[48px] md:text-[60px] text-[#222] leading-tight mb-4">
-                  Luxury <br/> <span className="text-[#1f751f]">Safaris</span>
+                  Luxury <br/> <span className="text-primary">Safaris</span>
                 </h2>
               </div>
 
@@ -127,7 +127,7 @@ export default function SafarisPage() {
               </div>
 
               <div className="pt-6">
-                <Link href="/safaris/luxury" className="inline-block border-b-2 border-[#1f751f] pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors">
+                <Link href="/safaris/luxury" className="inline-block border-b-2 border-primary pb-2 font-['Poppins'] text-[14px] tracking-[4px] uppercase text-[#222] hover:text-[#1f751f] transition-colors">
                   Discover Luxury —
                 </Link>
               </div>
@@ -138,7 +138,7 @@ export default function SafarisPage() {
                 <img
                   alt="Luxury Safari"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  src="https://images.unsplash.com/photo-1515914560649-8fe5d631aa62?q=80&w=1200&auto=format&fit=crop"
+                  src="https://uc4b8c4c4967484423e691eef891.previews.dropboxusercontent.com/p/thumb/AC_XwJhs-HiRqH_8CX2VamBlk6EMDcW3kpUMzgiIegfL0YcAbNTSpZ8WVzKzGTaBkJA7cnlrCqqrWpLjYCmF2Jmcl6Tq0m6rZo8jaFIVR58UdUMp41nc_fJ7sxM0C8J3-wU0VWt9J46DyNVhhTDfMpfscphfRxkjTdujnxWFgVsYAD1IJSk0KHHBC8CYDZPIaqrsHoYshkxKrmYesNVST67rDS2ehDEWqyLLSqHhoUUOsJOr53YQE7QH8zWbQ6Dm5mwOfkirezfVII9rE0jd4ok120yUhorWOV6YN3llupNQbNpzJKNexg2DQr2HaZEb-bQU7Teo5ukDjmoeL07ceE8WUHUV1wQQTeTLdlrdBiCKHw/p.jpeg"
                 />
               </div>
             </div>

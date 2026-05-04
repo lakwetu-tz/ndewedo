@@ -1,19 +1,27 @@
 "use client";
 
-import { useState } from 'react'
+import { Suspense } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Mail, Phone, MapPin, Loader2 } from 'lucide-react'
 import { HeroSection } from '@/components/HeroSection'
 import { toast } from 'sonner'
 
-export default function ContactPage() {
+function ContactForm({ presetInterest }: { presetInterest?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    interest: '',
+    interest: presetInterest || '',
     message: ''
   })
+
+  useEffect(() => {
+    if (presetInterest) {
+      setFormData(prev => ({ ...prev, interest: presetInterest }))
+    }
+  }, [presetInterest])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -41,7 +49,7 @@ export default function ContactPage() {
           name: '',
           email: '',
           phone: '',
-          interest: '',
+          interest: presetInterest || '',
           message: ''
         })
       } else {
@@ -55,6 +63,103 @@ export default function ContactPage() {
     }
   }
 
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div>
+        <label className="block text-[16px] text-[#333333] mb-2">Full Name *</label>
+        <input
+          type="text"
+          required
+          disabled={isSubmitting}
+          value={formData.name}
+          onChange={(e) => setFormData({...formData, name: e.target.value})}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
+          placeholder="Your name"
+        />
+      </div>
+
+      <div>
+        <label className="block text-[16px] text-[#333333] mb-2">Email *</label>
+        <input
+          type="email"
+          required
+          disabled={isSubmitting}
+          value={formData.email}
+          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
+          placeholder="your@email.com"
+        />
+      </div>
+
+      <div>
+        <label className="block text-[16px] text-[#333333] mb-2">Phone</label>
+        <input
+          type="tel"
+          disabled={isSubmitting}
+          value={formData.phone}
+          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
+          placeholder="+1 234 567 8900"
+        />
+      </div>
+
+      <div>
+        <label className="block text-[16px] text-[#333333] mb-2">I&apos;m Interested In *</label>
+        <select
+          required
+          disabled={isSubmitting}
+          value={formData.interest}
+          onChange={(e) => setFormData({...formData, interest: e.target.value})}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
+        >
+          <option value="">Select an option</option>
+          <option value="Wildlife Safaris">Wildlife Safaris</option>
+          <option value="Kilimanjaro Trekking">Kilimanjaro Trekking</option>
+          <option value="Cultural Tours">Cultural Tours</option>
+          <option value="Volunteer Programs">Volunteer Programs</option>
+          <option value="Custom Package">Custom Package</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-[16px] text-[#333333] mb-2">Message *</label>
+        <textarea
+          required
+          disabled={isSubmitting}
+          value={formData.message}
+          onChange={(e) => setFormData({...formData, message: e.target.value})}
+          rows={6}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
+          placeholder="Tell us about your dream Tanzania adventure..."
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full bg-[#1f751f] text-white px-8 py-4 rounded-[50px] text-[18px] hover:bg-[#0f440f] transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      >
+        {isSubmitting ? (
+          <>
+            <Loader2 className="animate-spin" size={20} />
+            Sending...
+          </>
+        ) : (
+          'Send Message'
+        )}
+      </button>
+    </form>
+  )
+}
+
+function ContactFormWithParams() {
+  const searchParams = useSearchParams()
+  const presetInterest = searchParams.get('interest') || undefined
+  
+  return <ContactForm presetInterest={presetInterest} />
+}
+
+export default function ContactPage() {
   return (
     <div className="w-full">
       <HeroSection 
@@ -70,91 +175,18 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div>
               <h2 className="text-[35px] font-semibold text-[#333333] mb-6">Send Us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-[16px] text-[#333333] mb-2">Full Name *</label>
-                  <input
-                    type="text"
-                    required
-                    disabled={isSubmitting}
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
-                    placeholder="Your name"
-                  />
+              <Suspense fallback={
+                <div className="space-y-6">
+                  <div className="h-12 bg-gray-200 animate-pulse rounded-lg" />
+                  <div className="h-12 bg-gray-200 animate-pulse rounded-lg" />
+                  <div className="h-12 bg-gray-200 animate-pulse rounded-lg" />
+                  <div className="h-12 bg-gray-200 animate-pulse rounded-lg" />
+                  <div className="h-40 bg-gray-200 animate-pulse rounded-lg" />
+                  <div className="h-16 bg-gray-200 animate-pulse rounded-[50px]" />
                 </div>
-
-                <div>
-                  <label className="block text-[16px] text-[#333333] mb-2">Email *</label>
-                  <input
-                    type="email"
-                    required
-                    disabled={isSubmitting}
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
-                    placeholder="your@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[16px] text-[#333333] mb-2">Phone</label>
-                  <input
-                    type="tel"
-                    disabled={isSubmitting}
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
-                    placeholder="+1 234 567 8900"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[16px] text-[#333333] mb-2">I'm Interested In *</label>
-                  <select
-                    required
-                    disabled={isSubmitting}
-                    value={formData.interest}
-                    onChange={(e) => setFormData({...formData, interest: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
-                  >
-                    <option value="">Select an option</option>
-                    <option value="Wildlife Safaris">Wildlife Safaris</option>
-                    <option value="Kilimanjaro Trekking">Kilimanjaro Trekking</option>
-                    <option value="Cultural Tours">Cultural Tours</option>
-                    <option value="Volunteer Programs">Volunteer Programs</option>
-                    <option value="Custom Package">Custom Package</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-[16px] text-[#333333] mb-2">Message *</label>
-                  <textarea
-                    required
-                    disabled={isSubmitting}
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1f751f] disabled:bg-gray-50"
-                    placeholder="Tell us about your dream Tanzania adventure..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-[#1f751f] text-white px-8 py-4 rounded-[50px] text-[18px] hover:bg-[#0f440f] transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="animate-spin" size={20} />
-                      Sending...
-                    </>
-                  ) : (
-                    'Send Message'
-                  )}
-                </button>
-              </form>
+              }>
+                <ContactFormWithParams />
+              </Suspense>
             </div>
 
             {/* Contact Information */}
@@ -162,7 +194,7 @@ export default function ContactPage() {
               <div>
                 <h2 className="text-[35px] font-semibold text-[#333333] mb-6">Get In Touch</h2>
                 <p className="text-[18px] text-[#686868] leading-[28.8px] mb-8">
-                  We're here to help plan your perfect Tanzania experience. Reach out to us through any of the channels below.
+                  We&apos;re here to help plan your perfect Tanzania experience. Reach out to us through any of the channels below.
                 </p>
               </div>
 
